@@ -166,6 +166,12 @@ section{padding:96px 0}
 .incluye .cell h4{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:500;margin-bottom:6px}
 .incluye .cell p{font-size:.88rem;color:var(--carbon-soft)}
 
+/* ---------- HERO OPT2 ---------- */
+.hero.opt2{background:var(--bosque)}
+.hero.opt2::after{
+  background:linear-gradient(180deg,rgba(27,58,42,.35) 0%,rgba(27,58,42,.15) 40%,rgba(27,58,42,.88) 100%);
+}
+
 /* ---------- CIERRE ---------- */
 .cierre{background:var(--bosque);color:var(--crema-2);text-align:center}
 .cierre .eyebrow{color:var(--turquesa-br)}
@@ -201,11 +207,11 @@ section{padding:96px 0}
 </div>
 
 <!-- HERO -->
-<header class="hero">
+<header class="hero" id="hero-section">
   <img class="hero-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/963bd3ed-5c2c-4c61-b316-074c61373117.jpeg?im_w=1600" alt="Vista al lago Nahuel Huapi" onerror="this.style.display='none'">
   <div class="wrap">
     <p class="eyebrow">San Carlos de Bariloche · Patagonia Argentina</p>
-    <h1>Siete noches<br>al pie del <em>lago</em></h1>
+    <h1 id="hero-h1">Siete noches<br>al pie del <em>lago</em></h1>
     <p class="sub">Una semana entre el Nahuel Huapi, los cerros y los bosques. Dos casas para ocho, dos formas de vivir el mismo verano patagónico.</p>
     <div class="hero-meta">
       <div><span>Fechas</span><strong>13 — 20 ene</strong></div>
@@ -362,11 +368,13 @@ const OPT = {
   1:{ title:"Opción 1 · Cabaña con costa de lago",
       pp:634, perday:79, host:288, hostGrp:"USD 2.300 el grupo", grp:"USD 5.072",
       accent:"var(--turquesa)", accentDk:"var(--lago)", soft:"rgba(62,156,154,.12)", glide:0,
-      cierre:"Opción 1 · USD 634 por cabeza" },
+      cierre:"Opción 1 · USD 634 por cabeza",
+      heroH1:'Siete noches<br>al pie del <em>lago</em>' },
   2:{ title:"Opción 2 · Casa de la Montaña",
       pp:792, perday:99, host:446, hostGrp:"USD 3.565 el grupo", grp:"USD 6.337",
       accent:"var(--bosque-br)", accentDk:"var(--bosque)", soft:"rgba(78,115,85,.15)", glide:1,
-      cierre:"Opción 2 · USD 792 por cabeza" },
+      cierre:"Opción 2 · USD 792 por cabeza",
+      heroH1:'Siete noches<br>perdidos entre<br>los <em>cerros</em>' },
 };
 
 /* ---------- ITINERARY ---------- */
@@ -484,6 +492,8 @@ function setOption(n){
   document.getElementById('grp-total').textContent=o.grp;
   document.getElementById('hero-price').textContent='USD '+o.pp;
   document.getElementById('cierre-title').textContent=o.cierre;
+  document.getElementById('hero-h1').innerHTML=o.heroH1;
+  document.getElementById('hero-section').classList.toggle('opt2', n===2);
 
   // lodge cards
   document.querySelectorAll('.lodge-card').forEach(c=>c.classList.toggle('active',+c.dataset.card===n));
