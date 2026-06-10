@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bariloche · Propuesta de viaje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lago-deep:#0C3B47;
+  --lago:#14586B;
+  --turquesa:#3E9C9A;
+  --turquesa-br:#6FC3BD;
+  --bosque:#2B4A3B;
+  --bosque-br:#4E7355;
+  --madera:#B07A47;
+  --madera-dk:#8A5A33;
+  --crema:#F3EEE3;
+  --crema-2:#FBF8F1;
+  --niebla:#E2DBCB;
+  --carbon:#1A2528;
+  --carbon-soft:#3A484B;
+  /* accent is swapped by the option toggle */
+  --accent:var(--turquesa);
+  --accent-dk:var(--lago);
+  --accent-soft:rgba(62,156,154,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--crema);
+  color:var(--carbon);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent-dk);
+  transition:color .5s ease;
+}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+
+/* ---------- TOGGLE BAR ---------- */
+.optbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(251,248,241,.86);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--niebla);
+}
+.optbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;height:62px}
+.optbar .brand{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;letter-spacing:-.01em}
+.optbar .brand small{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;color:var(--carbon-soft);text-transform:uppercase;display:block;font-weight:400}
+.switch{
+  display:flex;align-items:center;background:var(--crema);border:1px solid var(--niebla);
+  border-radius:999px;padding:4px;position:relative;
+}
+.switch button{
+  font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;
+  border:none;background:transparent;color:var(--carbon-soft);
+  padding:8px 18px;border-radius:999px;cursor:pointer;position:relative;z-index:2;
+  transition:color .35s ease;white-space:nowrap;
+}
+.switch button.active{color:#fff}
+.switch .glider{
+  position:absolute;top:4px;left:4px;height:calc(100% - 8px);
+  background:var(--accent);border-radius:999px;z-index:1;
+  transition:transform .45s cubic-bezier(.65,0,.35,1),background .5s ease;
+}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--lago-deep)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78}
+.hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(12,59,71,.35) 0%,rgba(12,59,71,.15) 40%,rgba(12,59,71,.85) 100%);}
+.hero .wrap{position:relative;z-index:3;padding-top:90px;padding-bottom:54px;color:var(--crema-2)}
+.hero .eyebrow{color:var(--turquesa-br)}
+.hero h1{font-size:clamp(3.2rem,11vw,8rem);color:#fff;margin:14px 0 0;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--turquesa-br)}
+.hero .sub{max-width:540px;margin-top:20px;font-size:1.05rem;color:rgba(255,255,255,.86)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:30px;margin-top:34px}
+.hero-meta div span{display:block;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--turquesa-br)}
+.hero-meta div strong{font-family:'Fraunces',serif;font-weight:500;font-size:1.5rem;color:#fff}
+
+/* ---------- SECTION SHELL ---------- */
+section{padding:96px 0}
+.sec-head{max-width:620px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(2rem,5vw,3.1rem);margin-top:12px}
+.sec-head p{margin-top:16px;color:var(--carbon-soft);font-size:1.05rem}
+
+/* ---------- RESUMEN / NUMEROS ---------- */
+.resumen{background:var(--lago-deep);color:var(--crema-2)}
+.resumen .eyebrow{color:var(--turquesa-br)}
+.resumen h2{color:#fff}
+.resumen .sec-head p{color:rgba(255,255,255,.72)}
+.bigprice{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin-bottom:8px}
+.bigprice .num{font-family:'Fraunces',serif;font-size:clamp(3.4rem,9vw,5.6rem);color:#fff;line-height:.9;font-weight:400}
+.bigprice .unit{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.12em;color:var(--turquesa-br);padding-bottom:12px}
+.price-note{color:rgba(255,255,255,.6);font-size:.92rem;margin-bottom:40px}
+.breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;border-top:1px solid rgba(255,255,255,.16)}
+.breakdown .row{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.12);padding-right:20px}
+.breakdown .row .l{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--turquesa-br);margin-bottom:8px}
+.breakdown .row .v{font-family:'Fraunces',serif;font-size:1.7rem;color:#fff}
+.breakdown .row .s{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:3px}
+.totalgroup{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline}
+.totalgroup .lab{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.totalgroup .amt{font-family:'Fraunces',serif;font-size:2rem;color:var(--turquesa-br)}
+
+/* ---------- HOSPEDAJE ---------- */
+.lodge-card{display:none}
+.lodge-card.active{display:block;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.lodge-top{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;margin-bottom:28px}
+.lodge-top .badge{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent-dk);padding:6px 12px;border-radius:999px;transition:all .5s ease}
+.lodge-top h3{font-size:clamp(1.8rem,4vw,2.6rem);margin:16px 0 10px}
+.lodge-top .desc{color:var(--carbon-soft)}
+.stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:24px}
+.stats div span{display:block;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--carbon-soft)}
+.stats div strong{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500}
+.lodge-feature{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3;background:var(--lago)}
+.lodge-feature img{width:100%;height:100%;object-fit:cover}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gallery a{border-radius:5px;overflow:hidden;aspect-ratio:1;background:var(--niebla);display:block}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery a:hover img{transform:scale(1.07)}
+.lodge-amen{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{font-size:.82rem;color:var(--carbon-soft);background:var(--crema-2);border:1px solid var(--niebla);padding:7px 14px;border-radius:999px}
+.lodge-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:600;color:var(--accent-dk);text-decoration:none;font-size:.92rem;border-bottom:1.5px solid var(--accent);padding-bottom:2px;transition:color .5s,border-color .5s}
+
+/* ---------- ITINERARIO ---------- */
+.itin{background:var(--crema-2)}
+.day{padding:40px 0;border-top:1px solid var(--niebla)}
+.day:first-of-type{border-top:none}
+.day-head{display:flex;align-items:baseline;gap:18px;margin-bottom:22px;flex-wrap:wrap}
+.day-num{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;transition:color .5s}
+.day-head h3{font-size:1.55rem}
+.day-head .date{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--carbon-soft);letter-spacing:.08em}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.opt{
+  background:var(--crema);border:1px solid var(--niebla);border-radius:8px;padding:20px;
+  cursor:pointer;position:relative;transition:border-color .25s,box-shadow .25s,transform .25s;
+}
+.opt:hover{border-color:var(--accent);box-shadow:0 8px 24px -14px rgba(20,88,107,.5);transform:translateY(-2px)}
+.opt .tag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-dk);transition:color .5s}
+.opt h4{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:500;margin:8px 0 7px}
+.opt p{font-size:.88rem;color:var(--carbon-soft)}
+.opt .check{position:absolute;top:16px;right:16px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--niebla);display:flex;align-items:center;justify-content:center;transition:all .25s}
+.opt .check svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .25s;stroke:#fff}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.sel .check{background:var(--accent);border-color:var(--accent)}
+.opt.sel .check svg{opacity:1;transform:scale(1)}
+.day-tip{margin-top:16px;font-size:.84rem;color:var(--carbon-soft);display:flex;gap:8px;align-items:flex-start}
+.day-tip b{color:var(--madera-dk);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
+
+/* ---------- INCLUYE ---------- */
+.incluye .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--niebla);border:1px solid var(--niebla);border-radius:8px;overflow:hidden}
+.incluye .cell{background:var(--crema-2);padding:26px}
+.incluye .cell .ic{font-size:1.4rem;margin-bottom:12px}
+.incluye .cell h4{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:500;margin-bottom:6px}
+.incluye .cell p{font-size:.88rem;color:var(--carbon-soft)}
+
+/* ---------- CIERRE ---------- */
+.cierre{background:var(--bosque);color:var(--crema-2);text-align:center}
+.cierre .eyebrow{color:var(--turquesa-br)}
+.cierre h2{color:#fff;font-size:clamp(2.2rem,6vw,3.6rem);margin:14px 0 18px}
+.cierre p{max-width:480px;margin:0 auto 32px;color:rgba(255,255,255,.78)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-weight:600;padding:15px 30px;border-radius:999px;text-decoration:none;transition:background .5s,transform .2s;border:none;font-size:.95rem;cursor:pointer}
+.cta:hover{transform:translateY(-2px)}
+.foot{padding:34px 0;text-align:center;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--carbon-soft);background:var(--crema)}
+
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  section{padding:64px 0}
+  .lodge-top{grid-template-columns:1fr;gap:24px}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .optbar .brand small{display:none}
+  .hero .wrap{padding-bottom:40px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- TOGGLE BAR -->
+<div class="optbar">
+  <div class="wrap">
+    <div class="brand">Bariloche 2027<small>Propuesta · 8 personas</small></div>
+    <div class="switch" id="switch">
+      <span class="glider" id="glider"></span>
+      <button class="active" data-opt="1" onclick="setOption(1)">Opción 1 · Lago</button>
+      <button data-opt="2" onclick="setOption(2)">Opción 2 · Montaña</button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <img class="hero-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/963bd3ed-5c2c-4c61-b316-074c61373117.jpeg?im_w=1600" alt="Vista al lago Nahuel Huapi" onerror="this.style.display='none'">
+  <div class="wrap">
+    <p class="eyebrow">San Carlos de Bariloche · Patagonia Argentina</p>
+    <h1>Siete noches<br>al pie del <em>lago</em></h1>
+    <p class="sub">Una semana entre el Nahuel Huapi, los cerros y los bosques. Dos casas para ocho, dos formas de vivir el mismo verano patagónico.</p>
+    <div class="hero-meta">
+      <div><span>Fechas</span><strong>13 — 20 ene</strong></div>
+      <div><span>Noches</span><strong>7</strong></div>
+      <div><span>Viajeros</span><strong>8</strong></div>
+      <div><span>Desde</span><strong id="hero-price">USD 634</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- RESUMEN / NUMEROS -->
+<section class="resumen" id="numeros">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Los números</p>
+      <h2 id="res-title">Opción 1 · Cabaña con costa de lago</h2>
+      <p>Todo incluido por persona: hospedaje, vuelos, autos y el rafting del Río Manso. Cambiá la opción arriba para ver cómo se mueve el total.</p>
+    </div>
+
+    <div class="bigprice">
+      <span class="num" id="pp-total">634</span>
+      <span class="unit">USD / persona · todo incluido</span>
+    </div>
+    <p class="price-note">Equivale a <strong id="pp-perday">USD 79</strong> por persona por día. Estadía completa para los 8.</p>
+
+    <div class="breakdown">
+      <div class="row"><div class="l">Hospedaje</div><div class="v" id="b-host">USD 288</div><div class="s" id="b-host-grp">USD 2.300 el grupo</div></div>
+      <div class="row"><div class="l">Vuelos</div><div class="v">USD 170</div><div class="s">USD 1.360 el grupo</div></div>
+      <div class="row"><div class="l">Autos</div><div class="v">USD 107</div><div class="s">USD 852 el grupo</div></div>
+      <div class="row"><div class="l">Rafting</div><div class="v">USD 70</div><div class="s">Río Manso · extra</div></div>
+    </div>
+
+    <div class="totalgroup">
+      <span class="lab">Total del grupo (8 personas)</span>
+      <span class="amt" id="grp-total">USD 5.072</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOSPEDAJE -->
+<section id="hospedaje">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Dónde dormimos</p>
+      <h2>La casa</h2>
+      <p>Las dos entran cómodas para los ocho. Una abre al lago; la otra se mete en el bosque, con pileta climatizada. Elegí arriba y la propuesta entera se acomoda.</p>
+    </div>
+
+    <!-- OPCION 1 -->
+    <div class="lodge-card active" data-card="1">
+      <div class="lodge-top">
+        <div>
+          <span class="badge">★ 4,87 · Superanfitrión · Favorito</span>
+          <h3>Cabaña Tronador · Golondrinas</h3>
+          <p class="desc">Cabaña amplia en dos plantas con acceso directo a la costa del Nahuel Huapi. Jardín con parrilla, chimenea central y cocinas completas en ambos niveles. Pensada para grupos grandes que quieren el lago a unos pasos.</p>
+          <div class="stats">
+            <div><span>Dormitorios</span><strong>4</strong></div>
+            <div><span>Camas</span><strong>7</strong></div>
+            <div><span>Baños</span><strong>3</strong></div>
+            <div><span>Capacidad</span><strong>12</strong></div>
+          </div>
+        </div>
+        <div class="lodge-feature">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/8c1428a0-5d16-485e-a252-248c663fe98b.jpeg?im_w=1200" alt="Cabaña con costa de lago" onerror="this.parentNode.style.display='none'">
+        </div>
+      </div>
+      <div class="gallery">
+        <a href="https://a0.muscache.com/im/pictures/a6aa6b04-1726-41e2-9347-34b971645d0b.jpg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/a6aa6b04-1726-41e2-9347-34b971645d0b.jpg?im_w=720" alt="Interior"></a>
+        <a href="https://a0.muscache.com/im/pictures/0cce6585-d67f-4e66-a367-78cfc3f8cacd.jpg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/0cce6585-d67f-4e66-a367-78cfc3f8cacd.jpg?im_w=720" alt="Estar"></a>
+        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/3cceda9a-9755-441d-bb38-f065eeb01038.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/3cceda9a-9755-441d-bb38-f065eeb01038.jpeg?im_w=720" alt="Ambiente"></a>
+        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/0c65eace-8cad-4a91-a134-957e89638ab3.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/0c65eace-8cad-4a91-a134-957e89638ab3.jpeg?im_w=720" alt="Dormitorio"></a>
+      </div>
+      <div class="lodge-amen">
+        <span class="chip">Costa de lago</span><span class="chip">Parrilla y jardín</span><span class="chip">Chimenea central</span><span class="chip">2 cocinas completas</span><span class="chip">Estacionamiento</span><span class="chip">Wi-Fi · calefacción</span>
+      </div>
+      <a class="lodge-link" href="https://www.airbnb.com.ar/rooms/22601323" target="_blank" rel="noopener">Ver el aviso en Airbnb →</a>
+    </div>
+
+    <!-- OPCION 2 -->
+    <div class="lodge-card" data-card="2">
+      <div class="lodge-top">
+        <div>
+          <span class="badge">★ 4,93 · Top 10% mundial · Superanfitrión</span>
+          <h3>Invernada · casa de montaña</h3>
+          <p class="desc">Cabaña diseñada por arquitectos en el bosque nativo de Arelauquen Golf &amp; Country, con ventanales que difuminan el límite entre interior y bosque. Vistas al lago y a la montaña, terraza amplia y acceso a pileta climatizada, gimnasio y spa del club. A minutos del Cerro Catedral.</p>
+          <div class="stats">
+            <div><span>Dormitorios</span><strong>4</strong></div>
+            <div><span>Camas</span><strong>6</strong></div>
+            <div><span>Baños</span><strong>3,5</strong></div>
+            <div><span>Capacidad</span><strong>8</strong></div>
+          </div>
+        </div>
+        <div class="lodge-feature">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/326748f1-5a11-4498-bf4b-4c429dcc46ca.jpeg?im_w=1200" alt="Casa de montaña en el bosque" onerror="this.parentNode.style.display='none'">
+        </div>
+      </div>
+      <div class="gallery">
+        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/b1ce88e0-a5fa-4e26-9a44-3e88aa2b2a40.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/b1ce88e0-a5fa-4e26-9a44-3e88aa2b2a40.jpeg?im_w=720" alt="Interior"></a>
+        <a href="https://a0.muscache.com/im/pictures/airflow/Hosting-1540032534318547483/original/6fb448c4-2d93-497c-9cb6-58ffab8a8b7e.jpg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/airflow/Hosting-1540032534318547483/original/6fb448c4-2d93-497c-9cb6-58ffab8a8b7e.jpg?im_w=720" alt="Living con ventanal"></a>
+        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/33f8d7a6-0986-4291-ab16-d65e13255328.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/33f8d7a6-0986-4291-ab16-d65e13255328.jpeg?im_w=720" alt="Comedor"></a>
+        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/8de09bed-49fa-4701-a668-403c69cd019e.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/8de09bed-49fa-4701-a668-403c69cd019e.jpeg?im_w=720" alt="Dormitorio"></a>
+      </div>
+      <div class="lodge-amen">
+        <span class="chip">Pileta climatizada</span><span class="chip">Spa y gimnasio del club</span><span class="chip">Bosque nativo</span><span class="chip">Vistas lago + montaña</span><span class="chip">Cerca Cerro Catedral</span><span class="chip">Diseño de arquitecto</span>
+      </div>
+      <a class="lodge-link" href="https://www.airbnb.com.ar/rooms/1540032534318547483" target="_blank" rel="noopener">Ver el aviso en Airbnb →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARIO -->
+<section class="itin" id="itinerario">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Día por día</p>
+      <h2>El plan, sin obligaciones</h2>
+      <p>Cada día trae dos o tres planes. Tocá el que más les cope para ir armando la semana entre todos — se marca y queda elegido.</p>
+    </div>
+    <div id="days"></div>
+  </div>
+</section>
+
+<!-- QUE INCLUYE -->
+<section class="incluye" id="incluye">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">La letra chica, clara</p>
+      <h2>Qué entra en el precio</h2>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="ic">🏡</div><h4>Hospedaje</h4><p>7 noches en la casa elegida, para los 8. Check-in 13/1, check-out 20/1.</p></div>
+      <div class="cell"><div class="ic">✈️</div><h4>Vuelos</h4><p>Aéreo ida y vuelta a Bariloche, USD 170 por persona.</p></div>
+      <div class="cell"><div class="ic">🚙</div><h4>Autos</h4><p>Alquiler para moverse por los circuitos toda la semana.</p></div>
+      <div class="cell"><div class="ic">🚣</div><h4>Rafting</h4><p>Bajada por el Río Manso ya contemplada como extra del grupo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="cierre" id="cierre">
+  <div class="wrap">
+    <p class="eyebrow">A un sí de distancia</p>
+    <h2 id="cierre-title">Opción 1 · USD 634 por cabeza</h2>
+    <p>Misma semana, misma patota. Solo falta decidir si arrancamos el día abriendo la puerta al lago o entre los árboles. Volvé arriba y comparen las dos.</p>
+    <button class="cta" onclick="toggleOption()">Comparar la otra opción →</button>
+  </div>
+</section>
+
+<div class="foot">BARILOCHE · 13—20 ENE 2027 · 8 VIAJEROS · PROPUESTA</div>
+
+<script>
+/* ---------- DATA ---------- */
+const OPT = {
+  1:{ title:"Opción 1 · Cabaña con costa de lago",
+      pp:634, perday:79, host:288, hostGrp:"USD 2.300 el grupo", grp:"USD 5.072",
+      accent:"var(--turquesa)", accentDk:"var(--lago)", soft:"rgba(62,156,154,.12)", glide:0,
+      cierre:"Opción 1 · USD 634 por cabeza" },
+  2:{ title:"Opción 2 · Casa de la Montaña",
+      pp:792, perday:99, host:446, hostGrp:"USD 3.565 el grupo", grp:"USD 6.337",
+      accent:"var(--bosque-br)", accentDk:"var(--bosque)", soft:"rgba(78,115,85,.15)", glide:1,
+      cierre:"Opción 2 · USD 792 por cabeza" },
+};
+
+/* ---------- ITINERARY ---------- */
+const DAYS = [
+ {n:"01",date:"Mar 13 ene",t:"Llegada y primeras vueltas",
+  tip:"Lleguen con luz: el atardecer sobre el lago el primer día engancha a cualquiera.",
+  o:[
+   {tag:"Tranqui",h:"Asado de bienvenida",p:"Check-in, compra grande y estrenamos la parrilla de la casa."},
+   {tag:"Clásico",h:"Centro Cívico + chocolates",p:"Vuelta por el centro y Calle Mitre: Rapa Nui, Mamuschka y la primera tablita."},
+   {tag:"Vista",h:"Atardecer en Playa Bonita",p:"Mate, fotos y el sol cayendo detrás del Campanario."}
+ ]},
+ {n:"02",date:"Mié 14 ene",t:"Circuito Chico",
+  tip:"Subí al Campanario temprano: la cola del aerosilla se pone larga al mediodía.",
+  o:[
+   {tag:"Imperdible",h:"Cerro Campanario",p:"El mirador 360° más famoso de la zona en aerosilla. 20 minutos arriba."},
+   {tag:"Caminata",h:"Llao Llao + Lago Escondido",p:"Sendero del Cerro Llao Llao y los bosques del hotel histórico."},
+   {tag:"Foto",h:"Punto Panorámico + Bahía López",p:"Las postales del circuito y cierre con cerveza en Patagonia Brewing."}
+ ]},
+ {n:"03",date:"Jue 15 ene",t:"Cerro Catedral y aventura",
+  tip:"En verano Catedral es base de trekkings; llevá agua y zapatillas con agarre.",
+  o:[
+   {tag:"Trekking",h:"Refugio Frey",p:"El clásico de día completo desde Catedral, entre agujas de granito y laguna."},
+   {tag:"Cerveza",h:"Ruta cervecera",p:"Manush, Berlina y Patagonia: tarde de birras artesanales y picadas."},
+   {tag:"Agua",h:"Kayak en Lago Gutiérrez",p:"Remar las aguas turquesas a media tarde, ritmo relajado."}
+ ]},
+ {n:"04",date:"Vie 16 ene",t:"Río Manso · rafting",
+  tip:"El rafting ya está pago en el viaje — el día más adrenalínico de la semana.",
+  o:[
+   {tag:"Incluido",h:"Rafting Río Manso",p:"Bajada clase III en aguas glaciares con guías. Es el extra del grupo."},
+   {tag:"Caballos",h:"Cabalgata patagónica",p:"Por la estepa y el bosque, con parada y comida criolla."},
+   {tag:"Relax",h:"Tarde de pileta o lago",p:"Spa y pileta climatizada (Op. 2) o costa de lago (Op. 1) para recargar."}
+ ]},
+ {n:"05",date:"Sáb 17 ene",t:"Navegación por el Nahuel Huapi",
+  tip:"Los catamaranes salen de Puerto Pañuelo; reservá con anticipación en temporada.",
+  o:[
+   {tag:"Bosque",h:"Puerto Blest + Cascada Los Cántaros",p:"Navegación a la selva valdiviana y caminata entre helechos gigantes."},
+   {tag:"Isla",h:"Isla Victoria + Arrayanes",p:"El bosque de arrayanes color canela y los miradores de la isla."},
+   {tag:"Mirador",h:"Cerro Otto",p:"Teleférico y confitería giratoria con vista de 360° sobre el lago."}
+ ]},
+ {n:"06",date:"Dom 18 ene",t:"Pueblos y caminos",
+  tip:"Si eligen El Bolsón es día largo (2 h ida): salgan temprano y vuelvan con luz.",
+  o:[
+   {tag:"Pueblo",h:"Villa La Angostura",p:"Parque Los Arrayanes y el casco de madera más coqueto de la zona."},
+   {tag:"Feria",h:"El Bolsón",p:"Feria artesanal, cerveza local y vista desde el Piltriquitrón."},
+   {tag:"Suizo",h:"Colonia Suiza · curanto",p:"El curanto al hoyo de los domingos y ferias de dulces caseros."}
+ ]},
+ {n:"07",date:"Lun 19 ene",t:"Gran final patagónico",
+  tip:"Tronador es día completo de ripio; vale cada curva por el glaciar negro.",
+  o:[
+   {tag:"Épico",h:"Cerro Tronador + Ventisquero Negro",p:"El glaciar, las cascadas y el cerro más alto de la región. Día entero."},
+   {tag:"Ruta",h:"Ruta de los 7 Lagos",p:"El camino escénico hacia San Martín de los Andes, parando en cada lago."},
+   {tag:"Libre",h:"Día libre en la casa",p:"SUP, pesca, descanso o última caminata corta cerca del hospedaje."}
+ ]},
+ {n:"08",date:"Mar 20 ene",t:"Despedida",
+  tip:"Dejá la compra de chocolate para el final así llega fresco a casa.",
+  o:[
+   {tag:"Última",h:"Desayuno con vista + compras",p:"Mañana lenta y vuelta a Mitre por chocolates y regionales antes del aeropuerto."},
+   {tag:"Brunch",h:"Brunch en Colonia Suiza",p:"Última comida tranqui de campo antes de cerrar la valija."},
+   {tag:"Express",h:"Campanario de despedida",p:"Subida rápida al mirador para la foto final camino al vuelo."}
+ ]}
+];
+
+/* ---------- RENDER ITINERARY ---------- */
+const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const daysEl = document.getElementById('days');
+DAYS.forEach((d,di)=>{
+  const opts = d.o.map((o,oi)=>`
+    <div class="opt" data-day="${di}" data-opt="${oi}" onclick="pick(this)">
+      <div class="check">${checkSvg}</div>
+      <span class="tag">${o.tag}</span>
+      <h4>${o.h}</h4>
+      <p>${o.p}</p>
+    </div>`).join('');
+  daysEl.insertAdjacentHTML('beforeend',`
+    <div class="day">
+      <div class="day-head">
+        <span class="day-num">DÍA ${d.n}</span>
+        <h3>${d.t}</h3>
+        <span class="date">${d.date}</span>
+      </div>
+      <div class="opts">${opts}</div>
+      <div class="day-tip"><b>Tip</b><span>${d.tip}</span></div>
+    </div>`);
+});
+
+function pick(el){
+  const day = el.dataset.day;
+  document.querySelectorAll(`.opt[data-day="${day}"]`).forEach(o=>{ if(o!==el) o.classList.remove('sel'); });
+  el.classList.toggle('sel');
+}
+
+/* ---------- OPTION SWITCH ---------- */
+let current = 1;
+function setOption(n){
+  current = n;
+  const o = OPT[n];
+  const r = document.documentElement.style;
+  r.setProperty('--accent',o.accent);
+  r.setProperty('--accent-dk',o.accentDk);
+  r.setProperty('--accent-soft',o.soft);
+
+  // glider
+  const btns=[...document.querySelectorAll('.switch button')];
+  btns.forEach(b=>b.classList.toggle('active', +b.dataset.opt===n));
+  const g=document.getElementById('glider'); const active=btns[o.glide];
+  g.style.width=active.offsetWidth+'px';
+  g.style.transform=`translateX(${active.offsetLeft-4}px)`;
+
+  // numbers
+  document.getElementById('res-title').textContent=o.title;
+  document.getElementById('pp-total').textContent=o.pp;
+  document.getElementById('pp-perday').textContent='USD '+o.perday;
+  document.getElementById('b-host').textContent='USD '+o.host;
+  document.getElementById('b-host-grp').textContent=o.hostGrp;
+  document.getElementById('grp-total').textContent=o.grp;
+  document.getElementById('hero-price').textContent='USD '+o.pp;
+  document.getElementById('cierre-title').textContent=o.cierre;
+
+  // lodge cards
+  document.querySelectorAll('.lodge-card').forEach(c=>c.classList.toggle('active',+c.dataset.card===n));
+}
+function toggleOption(){ setOption(current===1?2:1); document.getElementById('numeros').scrollIntoView({behavior:'smooth'}); }
+window.addEventListener('load',()=>setOption(1));
+window.addEventListener('resize',()=>setOption(current));
+</script>
+</body>
+</html>
