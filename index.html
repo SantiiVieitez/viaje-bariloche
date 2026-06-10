@@ -142,30 +142,39 @@ body.dark .car-nav{background:rgba(26,37,40,.94)}
 .chip{font-size:.82rem;color:var(--carbon-soft);background:var(--crema-2);border:1px solid var(--niebla);padding:7px 14px;border-radius:999px}
 .lodge-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:600;color:var(--accent-dk);text-decoration:none;font-size:.92rem;border-bottom:1.5px solid var(--accent);padding-bottom:2px;transition:color .5s,border-color .5s}
 
-/* ---------- ITINERARIO ---------- */
+/* ---------- ITINERARIO / PLANIFICADOR ---------- */
 .itin{background:var(--crema-2)}
-.day{padding:40px 0;border-top:1px solid var(--niebla)}
-.day:first-of-type{border-top:none}
-.day-head{display:flex;align-items:baseline;gap:18px;margin-bottom:22px;flex-wrap:wrap}
-.day-num{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;transition:color .5s}
-.day-head h3{font-size:1.55rem}
-.day-head .date{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--carbon-soft);letter-spacing:.08em}
-.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.opt{
-  background:var(--crema);border:1px solid var(--niebla);border-radius:8px;padding:20px;
-  cursor:pointer;position:relative;transition:border-color .25s,box-shadow .25s,transform .25s;
+.planner{display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:start}
+.pool-wrap{position:sticky;top:80px}
+.pool-title{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--carbon-soft);margin-bottom:12px}
+.pool{display:flex;flex-direction:column;gap:10px;max-height:72vh;overflow-y:auto;padding-right:6px}
+.acard{background:var(--crema);border:1px solid var(--niebla);border-radius:8px;padding:12px 14px;cursor:grab;display:flex;gap:11px;align-items:flex-start;transition:border-color .25s,box-shadow .25s,transform .25s;user-select:none;-webkit-user-select:none}
+.acard:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 6px 18px -12px rgba(20,88,107,.5)}
+.acard:active{cursor:grabbing}
+.acard.dragging{opacity:.45}
+.acard.picked{border-color:var(--accent);background:var(--accent-soft)}
+.acard .ic{font-size:1.25rem;line-height:1.2}
+.acard .tag{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-dk);transition:color .5s}
+.acard h4{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:500;margin:3px 0}
+.acard p{font-size:.78rem;color:var(--carbon-soft);line-height:1.45}
+.dayrow{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--niebla);align-items:center}
+.dayrow:first-child{border-top:none}
+.day-num{display:block;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;transition:color .5s}
+.day-info .date{font-family:'Space Mono',monospace;font-size:.64rem;color:var(--carbon-soft);letter-spacing:.08em}
+.day-info .sug{font-size:.74rem;color:var(--carbon-soft);font-style:italic;margin-top:2px}
+.dropzone{min-height:60px;border:1.5px dashed var(--niebla);border-radius:8px;padding:9px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;transition:border-color .2s,background .2s;cursor:pointer}
+.dropzone.over{border-color:var(--accent);background:var(--accent-soft)}
+.dz-hint{font-size:.74rem;color:var(--carbon-soft);font-style:italic;padding-left:4px}
+.achip{display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:6px 7px 6px 12px;font-size:.82rem;transition:border-color .5s,background .5s}
+.achip b{width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:600;flex:none;transition:background .5s}
+body.dark .acard .tag{color:var(--accent)}
+@media (max-width:900px){
+  .planner{grid-template-columns:1fr}
+  .pool-wrap{position:static}
+  .pool{flex-direction:row;overflow-x:auto;max-height:none;padding-bottom:8px}
+  .acard{flex:0 0 235px}
+  .dayrow{grid-template-columns:1fr;gap:8px}
 }
-.opt:hover{border-color:var(--accent);box-shadow:0 8px 24px -14px rgba(20,88,107,.5);transform:translateY(-2px)}
-.opt .tag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-dk);transition:color .5s}
-.opt h4{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:500;margin:8px 0 7px}
-.opt p{font-size:.88rem;color:var(--carbon-soft)}
-.opt .check{position:absolute;top:16px;right:16px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--niebla);display:flex;align-items:center;justify-content:center;transition:all .25s}
-.opt .check svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:all .25s;stroke:#fff}
-.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
-.opt.sel .check{background:var(--accent);border-color:var(--accent)}
-.opt.sel .check svg{opacity:1;transform:scale(1)}
-.day-tip{margin-top:16px;font-size:.84rem;color:var(--carbon-soft);display:flex;gap:8px;align-items:flex-start}
-.day-tip b{color:var(--madera-dk);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
 
 /* ---------- INCLUYE ---------- */
 .incluye .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--niebla);border:1px solid var(--niebla);border-radius:8px;overflow:hidden}
@@ -351,15 +360,21 @@ body.dark .day-tip b{color:var(--madera)}
   </div>
 </section>
 
-<!-- ITINERARIO -->
+<!-- ITINERARIO / PLANIFICADOR -->
 <section class="itin" id="itinerario">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Día por día</p>
-      <h2>El plan, sin obligaciones</h2>
-      <p>Cada día trae dos o tres planes. Tocá el que más les cope para ir armando la semana entre todos — se marca y queda elegido.</p>
+      <p class="eyebrow">Armá la semana</p>
+      <h2>Las actividades, a tu manera</h2>
+      <p>Arrastrá las tarjetas a los días — o tocá una tarjeta y después el día. Entran varias por día, podés repetir, y lo que armen queda guardado y baja al resumen.</p>
     </div>
-    <div id="days"></div>
+    <div class="planner">
+      <div class="pool-wrap">
+        <p class="pool-title">25 actividades · arrastrá las que quieras</p>
+        <div class="pool" id="pool"></div>
+      </div>
+      <div class="board" id="board"></div>
+    </div>
   </div>
 </section>
 
@@ -369,7 +384,7 @@ body.dark .day-tip b{color:var(--madera)}
     <div class="sec-head">
       <p class="eyebrow">Lo que van eligiendo</p>
       <h2>El plan que armaron</h2>
-      <p>Acá se junta lo que marcaron día por día. Queda guardado en este dispositivo, y lo pueden copiar o mandar directo al grupo.</p>
+      <p>Acá baja lo que armaron en la tabla, día por día. Queda guardado en este dispositivo, y lo pueden copiar o mandar directo al grupo.</p>
     </div>
     <div id="plan-list"></div>
     <div class="plan-actions">
@@ -502,107 +517,106 @@ function slide(btn,dir){
   t.scrollBy({left:dir*t.clientWidth*0.8,behavior:'smooth'});
 }
 
-/* ---------- ITINERARY ---------- */
-const DAYS = [
- {n:"01",date:"Mar 13 ene",t:"Llegada y primeras vueltas",
-  tip:"Lleguen con luz: el atardecer sobre el lago el primer día engancha a cualquiera.",
-  o:[
-   {tag:"Tranqui",h:"Asado de bienvenida",p:"Check-in, compra grande y estrenamos la parrilla de la casa."},
-   {tag:"Clásico",h:"Centro Cívico + chocolates",p:"Vuelta por el centro y Calle Mitre: Rapa Nui, Mamuschka y la primera tablita."},
-   {tag:"Vista",h:"Atardecer en Playa Bonita",p:"Mate, fotos y el sol cayendo detrás del Campanario."}
- ]},
- {n:"02",date:"Mié 14 ene",t:"Circuito Chico",
-  tip:"Subí al Campanario temprano: la cola del aerosilla se pone larga al mediodía.",
-  o:[
-   {tag:"Imperdible",h:"Cerro Campanario",p:"El mirador 360° más famoso de la zona en aerosilla. 20 minutos arriba."},
-   {tag:"Caminata",h:"Llao Llao + Lago Escondido",p:"Sendero del Cerro Llao Llao y los bosques del hotel histórico."},
-   {tag:"Foto",h:"Punto Panorámico + Bahía López",p:"Las postales del circuito y cierre con cerveza en Patagonia Brewing."}
- ]},
- {n:"03",date:"Jue 15 ene",t:"Cerro Catedral y aventura",
-  tip:"En verano Catedral es base de trekkings; llevá agua y zapatillas con agarre.",
-  o:[
-   {tag:"Trekking",h:"Refugio Frey",p:"El clásico de día completo desde Catedral, entre agujas de granito y laguna."},
-   {tag:"Cerveza",h:"Ruta cervecera",p:"Manush, Berlina y Patagonia: tarde de birras artesanales y picadas."},
-   {tag:"Agua",h:"Kayak en Lago Gutiérrez",p:"Remar las aguas turquesas a media tarde, ritmo relajado."}
- ]},
- {n:"04",date:"Vie 16 ene",t:"Río Manso · rafting",
-  tip:"El rafting ya está pago en el viaje — el día más adrenalínico de la semana.",
-  o:[
-   {tag:"Incluido",h:"Rafting Río Manso",p:"Bajada clase III en aguas glaciares con guías. Es el extra del grupo."},
-   {tag:"Caballos",h:"Cabalgata patagónica",p:"Por la estepa y el bosque, con parada y comida criolla."},
-   {tag:"Relax",h:"Tarde de pileta o lago",p:"Spa y pileta climatizada (Op. 2) o costa de lago (Op. 1) para recargar."}
- ]},
- {n:"05",date:"Sáb 17 ene",t:"Navegación por el Nahuel Huapi",
-  tip:"Los catamaranes salen de Puerto Pañuelo; reservá con anticipación en temporada.",
-  o:[
-   {tag:"Bosque",h:"Puerto Blest + Cascada Los Cántaros",p:"Navegación a la selva valdiviana y caminata entre helechos gigantes."},
-   {tag:"Isla",h:"Isla Victoria + Arrayanes",p:"El bosque de arrayanes color canela y los miradores de la isla."},
-   {tag:"Mirador",h:"Cerro Otto",p:"Teleférico y confitería giratoria con vista de 360° sobre el lago."}
- ]},
- {n:"06",date:"Dom 18 ene",t:"Pueblos y caminos",
-  tip:"Si eligen El Bolsón es día largo (2 h ida): salgan temprano y vuelvan con luz.",
-  o:[
-   {tag:"Pueblo",h:"Villa La Angostura",p:"Parque Los Arrayanes y el casco de madera más coqueto de la zona."},
-   {tag:"Feria",h:"El Bolsón",p:"Feria artesanal, cerveza local y vista desde el Piltriquitrón."},
-   {tag:"Suizo",h:"Colonia Suiza · curanto",p:"El curanto al hoyo de los domingos y ferias de dulces caseros."}
- ]},
- {n:"07",date:"Lun 19 ene",t:"Gran final patagónico",
-  tip:"Tronador es día completo de ripio; vale cada curva por el glaciar negro.",
-  o:[
-   {tag:"Épico",h:"Cerro Tronador + Ventisquero Negro",p:"El glaciar, las cascadas y el cerro más alto de la región. Día entero."},
-   {tag:"Ruta",h:"Ruta de los 7 Lagos",p:"El camino escénico hacia San Martín de los Andes, parando en cada lago."},
-   {tag:"Libre",h:"Día libre en la casa",p:"SUP, pesca, descanso o última caminata corta cerca del hospedaje."}
- ]},
- {n:"08",date:"Mar 20 ene",t:"Despedida",
-  tip:"Dejá la compra de chocolate para el final así llega fresco a casa.",
-  o:[
-   {tag:"Última",h:"Desayuno con vista + compras",p:"Mañana lenta y vuelta a Mitre por chocolates y regionales antes del aeropuerto."},
-   {tag:"Brunch",h:"Brunch en Colonia Suiza",p:"Última comida tranqui de campo antes de cerrar la valija."},
-   {tag:"Express",h:"Campanario de despedida",p:"Subida rápida al mirador para la foto final camino al vuelo."}
- ]}
+/* ---------- ACTIVIDADES ---------- */
+const ACTS = [
+ {id:'rafting',   ic:'🚣', tag:'Incluido',   h:'Rafting Río Manso',           p:'Bajada clase III en aguas glaciares con guías. Ya está pago.'},
+ {id:'cuatri',    ic:'🏍️', tag:'Adrenalina', h:'Cuatriciclos',                p:'Travesía en cuatri por bosque y pampa de altura, cerca de Catedral.'},
+ {id:'mtb',       ic:'🚵', tag:'Adrenalina', h:'Mountain bike',               p:'Alquiler de bicis y el Circuito Chico a pedal, con paradas cerveceras.'},
+ {id:'parapente', ic:'🪂', tag:'Adrenalina', h:'Parapente del Cerro Otto',    p:'Vuelo biplaza con el Nahuel Huapi abajo. Para los valientes.'},
+ {id:'canopy',    ic:'🌲', tag:'Adrenalina', h:'Canopy en Colonia Suiza',     p:'Tirolesas entre los árboles a los pies del Cerro López.'},
+ {id:'campanario',ic:'🚡', tag:'Imperdible', h:'Cerro Campanario',            p:'Aerosilla al mirador 360° más famoso de la zona.'},
+ {id:'circuito',  ic:'🥾', tag:'Caminata',   h:'Circuito Chico + Llao Llao',  p:'Bahía López, Punto Panorámico y los bosques del hotel histórico.'},
+ {id:'frey',      ic:'⛰️', tag:'Trekking',   h:'Refugio Frey',                p:'Día completo desde Catedral, entre agujas de granito y laguna.'},
+ {id:'kayak',     ic:'🛶', tag:'Agua',       h:'Kayak en Lago Gutiérrez',     p:'Remar aguas turquesas a media tarde, ritmo relajado.'},
+ {id:'sup',       ic:'🏄', tag:'Agua',       h:'Stand up paddle',             p:'SUP en bahías calmas del lago, ideal a la mañana temprano.'},
+ {id:'pesca',     ic:'🎣', tag:'Agua',       h:'Pesca con mosca',             p:'Salida guiada por ríos y bocas legendarias de la zona.'},
+ {id:'cabalgata', ic:'🐎', tag:'Campo',      h:'Cabalgata patagónica',        p:'Estepa y bosque a caballo, con parada y comida criolla.'},
+ {id:'blest',     ic:'⛴️', tag:'Navegación', h:'Puerto Blest + Los Cántaros', p:'Catamarán a la selva valdiviana y caminata a la cascada.'},
+ {id:'victoria',  ic:'🏝️', tag:'Navegación', h:'Isla Victoria + Arrayanes',   p:'El bosque color canela y los miradores de la isla.'},
+ {id:'otto',      ic:'🚠', tag:'Vista',      h:'Cerro Otto',                  p:'Teleférico y confitería giratoria con vista de 360°.'},
+ {id:'tronador',  ic:'🏔️', tag:'Épico',      h:'Tronador + Ventisquero Negro',p:'El glaciar negro y las cascadas. Día entero de ripio.'},
+ {id:'sietelagos',ic:'🛣️', tag:'Ruta',       h:'Ruta de los 7 Lagos',         p:'El camino escénico a San Martín de los Andes, parando en cada lago.'},
+ {id:'angostura', ic:'🏘️', tag:'Pueblo',     h:'Villa La Angostura',          p:'Parque Los Arrayanes y el casco de madera más coqueto.'},
+ {id:'bolson',    ic:'🎪', tag:'Feria',      h:'El Bolsón',                   p:'Feria artesanal, lúpulo local y el Piltriquitrón de fondo.'},
+ {id:'cerveceras',ic:'🍺', tag:'Birras',     h:'Ruta cervecera',              p:'Manush, Berlina y Patagonia: birras artesanales y picadas.'},
+ {id:'chocolates',ic:'🍫', tag:'Clásico',    h:'Centro Cívico + chocolates',  p:'Vuelta por Mitre: Rapa Nui, Mamuschka y la primera tablita.'},
+ {id:'curanto',   ic:'🫕', tag:'Comida',     h:'Curanto en Colonia Suiza',    p:'El curanto al hoyo de los domingos y dulces caseros.'},
+ {id:'asado',     ic:'🥩', tag:'Comida',     h:'Asado en la casa',            p:'Parrilla, vino y noche patagónica sin moverse de casa.'},
+ {id:'playabonita',ic:'🌅',tag:'Vista',      h:'Atardecer en Playa Bonita',   p:'Mate, fotos y el sol cayendo detrás del Campanario.'},
+ {id:'relax',     ic:'💆', tag:'Relax',      h:'Pileta y spa en casa',        p:'Recargar: pileta climatizada (Op. 2) o costa del lago (Op. 1).'}
 ];
 
-/* ---------- RENDER ITINERARY ---------- */
-const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-const daysEl = document.getElementById('days');
-DAYS.forEach((d,di)=>{
-  const opts = d.o.map((o,oi)=>`
-    <div class="opt" data-day="${di}" data-opt="${oi}" onclick="pick(this)">
-      <div class="check">${checkSvg}</div>
-      <span class="tag">${o.tag}</span>
-      <h4>${o.h}</h4>
-      <p>${o.p}</p>
-    </div>`).join('');
-  daysEl.insertAdjacentHTML('beforeend',`
-    <div class="day">
-      <div class="day-head">
-        <span class="day-num">DÍA ${d.n}</span>
-        <h3>${d.t}</h3>
-        <span class="date">${d.date}</span>
-      </div>
-      <div class="opts">${opts}</div>
-      <div class="day-tip"><b>Tip</b><span>${d.tip}</span></div>
-    </div>`);
-});
+const DAYS = [
+ {n:"01",date:"Mar 13 ene",sug:"llegada y check-in"},
+ {n:"02",date:"Mié 14 ene",sug:"sugerido: Circuito Chico"},
+ {n:"03",date:"Jue 15 ene",sug:"sugerido: Catedral / Frey"},
+ {n:"04",date:"Vie 16 ene",sug:"sugerido: Río Manso"},
+ {n:"05",date:"Sáb 17 ene",sug:"sugerido: navegación"},
+ {n:"06",date:"Dom 18 ene",sug:"sugerido: pueblos"},
+ {n:"07",date:"Lun 19 ene",sug:"sugerido: Tronador / 7 Lagos"},
+ {n:"08",date:"Mar 20 ene",sug:"despedida y vuelo"}
+];
 
-/* ---------- PLAN ARMADO ---------- */
-let sel = {};
-try{ sel = JSON.parse(localStorage.getItem('bari-plan')||'{}'); }catch(e){}
+/* ---------- RENDER PLANNER ---------- */
+document.getElementById('pool').innerHTML = ACTS.map(a=>
+  `<div class="acard" draggable="true" data-id="${a.id}" ondragstart="dragStart(event,'${a.id}')" ondragend="this.classList.remove('dragging')" onclick="tapCard(this,'${a.id}')">`+
+    `<span class="ic">${a.ic}</span>`+
+    `<div><span class="tag">${a.tag}</span><h4>${a.h}</h4><p>${a.p}</p></div>`+
+  `</div>`).join('');
 
-function pick(el){
-  const day = el.dataset.day;
-  document.querySelectorAll(`.opt[data-day="${day}"]`).forEach(o=>{ if(o!==el) o.classList.remove('sel'); });
-  el.classList.toggle('sel');
-  if(el.classList.contains('sel')) sel[day]=+el.dataset.opt; else delete sel[day];
-  localStorage.setItem('bari-plan',JSON.stringify(sel));
+function renderBoard(){
+  document.getElementById('board').innerHTML = DAYS.map((d,i)=>{
+    const chips = (week[i]||[]).map((id,j)=>{
+      const a = ACTS.find(x=>x.id===id);
+      return `<span class="achip">${a.ic} ${a.h}<b onclick="event.stopPropagation();removeAct(${i},${j})" title="Sacar del día">×</b></span>`;
+    }).join('');
+    return `<div class="dayrow">`+
+      `<div class="day-info"><span class="day-num">DÍA ${d.n}</span><span class="date">${d.date}</span><div class="sug">${d.sug}</div></div>`+
+      `<div class="dropzone" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropAct(event,${i})" onclick="zoneTap(${i})">`+
+        (chips || `<span class="dz-hint">arrastrá una actividad acá — o tocá una y después este día</span>`)+
+      `</div>`+
+    `</div>`;
+  }).join('');
   renderPlan();
 }
 
+let dragId = null, tapId = null;
+function dragStart(e,id){ dragId=id; e.dataTransfer.setData('text/plain',id); e.target.classList.add('dragging'); }
+function dropAct(e,day){
+  e.preventDefault(); e.currentTarget.classList.remove('over');
+  const id = e.dataTransfer.getData('text/plain') || dragId;
+  if(id) addAct(day,id);
+  dragId = null;
+}
+function tapCard(el,id){
+  if(tapId===id){ tapId=null; el.classList.remove('picked'); }
+  else{ tapId=id; document.querySelectorAll('.acard').forEach(c=>c.classList.remove('picked')); el.classList.add('picked'); }
+}
+function zoneTap(day){ if(tapId) addAct(day,tapId); }
+function addAct(day,id){
+  week[day] = week[day]||[];
+  if(week[day].includes(id)) return;
+  week[day].push(id);
+  localStorage.setItem('bari-week',JSON.stringify(week));
+  renderBoard();
+}
+function removeAct(day,j){
+  week[day].splice(j,1);
+  if(!week[day].length) delete week[day];
+  localStorage.setItem('bari-week',JSON.stringify(week));
+  renderBoard();
+}
+
+/* ---------- PLAN ARMADO ---------- */
+let week = {};
+try{ week = JSON.parse(localStorage.getItem('bari-week')||'{}'); }catch(e){}
+
 function renderPlan(){
   document.getElementById('plan-list').innerHTML = DAYS.map((d,i)=>{
-    const o = sel[i]!==undefined ? d.o[sel[i]] : null;
+    const acts = (week[i]||[]).map(id=>ACTS.find(a=>a.id===id));
     return `<div class="plan-row"><span class="d">DÍA ${d.n}</span>`+
-      (o ? `<span class="t">${o.h}</span>` : `<span class="empty">todavía sin elegir — tocá un plan arriba</span>`)+
+      (acts.length ? `<span class="t">${acts.map(a=>a.ic+' '+a.h).join(' · ')}</span>`
+                   : `<span class="empty">día libre por ahora — arrastrá actividades arriba</span>`)+
       `</div>`;
   }).join('');
   updateWa();
@@ -611,7 +625,10 @@ function renderPlan(){
 function planText(){
   const o = OPT[current];
   let t = `🏔️ Bariloche · 13–20 ene 2027 · 8 personas\n${o.title}\n💵 USD ${o.pp} por persona, todo incluido · ${o.grp} el grupo\n\n📅 El plan:\n`;
-  DAYS.forEach((d,i)=>{ t += `Día ${+d.n} (${d.date}): ${sel[i]!==undefined ? d.o[sel[i]].h : 'a definir'}\n`; });
+  DAYS.forEach((d,i)=>{
+    const acts = (week[i]||[]).map(id=>ACTS.find(a=>a.id===id).h);
+    t += `Día ${+d.n} (${d.date}): ${acts.length ? acts.join(' + ') : 'a definir'}\n`;
+  });
   return t;
 }
 
@@ -676,12 +693,7 @@ function setOption(n){
 }
 function toggleOption(){ setOption(current===1?2:1); document.getElementById('numeros').scrollIntoView({behavior:'smooth'}); }
 
-// restore picks saved on this device
-Object.entries(sel).forEach(([d,o])=>{
-  const el = document.querySelector(`.opt[data-day="${d}"][data-opt="${o}"]`);
-  if(el) el.classList.add('sel');
-});
-renderPlan();
+renderBoard();
 
 window.addEventListener('load',()=>setOption(1));
 window.addEventListener('resize',()=>setOption(current));
