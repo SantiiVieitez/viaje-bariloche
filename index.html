@@ -218,7 +218,7 @@ section{padding:96px 0}
       <div><span>Fechas</span><strong>13 — 20 ene</strong></div>
       <div><span>Noches</span><strong>7</strong></div>
       <div><span>Viajeros</span><strong>8</strong></div>
-      <div><span>Desde</span><strong id="hero-price">USD 634</strong></div>
+      <div><span>Desde</span><strong id="hero-price">USD 656</strong></div>
     </div>
   </div>
 </header>
@@ -233,21 +233,23 @@ section{padding:96px 0}
     </div>
 
     <div class="bigprice">
-      <span class="num" id="pp-total">634</span>
+      <span class="num" id="pp-total">656</span>
       <span class="unit">USD / persona · todo incluido</span>
     </div>
-    <p class="price-note">Equivale a <strong id="pp-perday">USD 79</strong> por persona por día. Estadía completa para los 8.</p>
+    <p class="price-note">Equivale a <strong id="pp-perday">USD 82</strong> por persona por día. Estadía completa para los 8.</p>
 
     <div class="breakdown">
       <div class="row"><div class="l">Hospedaje</div><div class="v" id="b-host">USD 288</div><div class="s" id="b-host-grp">USD 2.300 el grupo</div></div>
       <div class="row"><div class="l">Vuelos</div><div class="v">USD 170</div><div class="s">USD 1.360 el grupo</div></div>
       <div class="row"><div class="l">Autos</div><div class="v">USD 107</div><div class="s">USD 852 el grupo</div></div>
       <div class="row"><div class="l">Rafting</div><div class="v">USD 70</div><div class="s">Río Manso · extra</div></div>
+      <div class="row"><div class="l">Nafta (est.)</div><div class="v">USD 22</div><div class="s">USD 173 · ~$252.000 ARS</div></div>
     </div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.42);margin-top:10px">* Nafta estimada a $1.880/L y ~9 L/100 km · 2 Fiat Cronos · ~1.490 km en total</p>
 
     <div class="totalgroup">
       <span class="lab">Total del grupo (8 personas)</span>
-      <span class="amt" id="grp-total">USD 5.072</span>
+      <span class="amt" id="grp-total">USD 5.245</span>
     </div>
   </div>
 </section>
@@ -355,7 +357,7 @@ section{padding:96px 0}
 <section class="cierre" id="cierre">
   <div class="wrap">
     <p class="eyebrow">A un sí de distancia</p>
-    <h2 id="cierre-title">Opción 1 · USD 634 por cabeza</h2>
+    <h2 id="cierre-title">Opción 1 · USD 656 por cabeza</h2>
     <p>Misma semana, misma patota. Solo falta decidir si arrancamos el día abriendo la puerta al lago o entre los árboles. Volvé arriba y comparen las dos.</p>
     <button class="cta" onclick="toggleOption()">Comparar la otra opción →</button>
   </div>
@@ -367,14 +369,14 @@ section{padding:96px 0}
 /* ---------- DATA ---------- */
 const OPT = {
   1:{ title:"Opción 1 · Cabaña con costa de lago",
-      pp:634, perday:79, host:288, hostGrp:"USD 2.300 el grupo", grp:"USD 5.072",
+      pp:656, perday:82, host:288, hostGrp:"USD 2.300 el grupo", grp:"USD 5.245",
       accent:"var(--turquesa)", accentDk:"var(--lago)", soft:"rgba(62,156,154,.12)", glide:0,
-      cierre:"Opción 1 · USD 634 por cabeza",
+      cierre:"Opción 1 · USD 656 por cabeza",
       heroH1:'Siete noches<br>al pie del <em>lago</em>' },
   2:{ title:"Opción 2 · Casa de la Montaña",
-      pp:792, perday:99, host:446, hostGrp:"USD 3.565 el grupo", grp:"USD 6.337",
+      pp:814, perday:102, host:446, hostGrp:"USD 3.565 el grupo", grp:"USD 6.510",
       accent:"var(--bosque-br)", accentDk:"var(--bosque)", soft:"rgba(78,115,85,.15)", glide:1,
-      cierre:"Opción 2 · USD 792 por cabeza",
+      cierre:"Opción 2 · USD 814 por cabeza",
       heroH1:'Siete noches<br>perdidos entre<br>los <em>cerros</em>' },
 };
 
