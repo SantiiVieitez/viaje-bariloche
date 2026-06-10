@@ -180,7 +180,31 @@ section{padding:96px 0}
 .cierre p{max-width:480px;margin:0 auto 32px;color:rgba(255,255,255,.78)}
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-weight:600;padding:15px 30px;border-radius:999px;text-decoration:none;transition:background .5s,transform .2s;border:none;font-size:.95rem;cursor:pointer}
 .cta:hover{transform:translateY(-2px)}
+.cta.wa{background:#25D366}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .foot{padding:34px 0;text-align:center;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--carbon-soft);background:var(--crema)}
+
+/* ---------- PLAN ARMADO ---------- */
+.planres{background:var(--crema)}
+.plan-row{display:flex;gap:16px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--niebla)}
+.plan-row .d{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.14em;color:var(--accent-dk);min-width:64px;transition:color .5s}
+.plan-row .t{font-family:'Fraunces',serif;font-size:1.08rem}
+.plan-row .empty{color:var(--carbon-soft);font-style:italic;font-size:.88rem}
+.plan-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
+/* ---------- MODO OSCURO ---------- */
+.optbar-right{display:flex;align-items:center;gap:10px}
+.mode-btn{width:38px;height:38px;border-radius:999px;border:1px solid var(--niebla);background:var(--crema);cursor:pointer;font-size:.95rem;line-height:1;flex:none}
+body.dark{
+  --crema:#121A1C;
+  --crema-2:#1A2528;
+  --niebla:#2C3A3E;
+  --carbon:#EDE7DA;
+  --carbon-soft:#A8B0AC;
+}
+body.dark .optbar{background:rgba(18,26,28,.86)}
+body.dark .eyebrow,body.dark .opt .tag,body.dark .day-num,body.dark .lodge-link,body.dark .plan-row .d{color:var(--accent)}
+body.dark .day-tip b{color:var(--madera)}
 
 @media (max-width:760px){
   .wrap{padding:0 20px}
@@ -199,10 +223,13 @@ section{padding:96px 0}
 <div class="optbar">
   <div class="wrap">
     <div class="brand">Bariloche 2027<small>Propuesta · 8 personas</small></div>
-    <div class="switch" id="switch">
-      <span class="glider" id="glider"></span>
-      <button class="active" data-opt="1" onclick="setOption(1)">Opción 1 · Lago</button>
-      <button data-opt="2" onclick="setOption(2)">Opción 2 · Montaña</button>
+    <div class="optbar-right">
+      <div class="switch" id="switch">
+        <span class="glider" id="glider"></span>
+        <button class="active" data-opt="1" onclick="setOption(1)">Opción 1 · Lago</button>
+        <button data-opt="2" onclick="setOption(2)">Opción 2 · Montaña</button>
+      </div>
+      <button class="mode-btn" id="modeBtn" onclick="toggleDark()" aria-label="Cambiar modo claro/oscuro">🌙</button>
     </div>
   </div>
 </div>
@@ -337,6 +364,22 @@ section{padding:96px 0}
   </div>
 </section>
 
+<!-- PLAN ARMADO -->
+<section class="planres" id="plan">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Lo que van eligiendo</p>
+      <h2>El plan que armaron</h2>
+      <p>Acá se junta lo que marcaron día por día. Queda guardado en este dispositivo, y lo pueden copiar o mandar directo al grupo.</p>
+    </div>
+    <div id="plan-list"></div>
+    <div class="plan-actions">
+      <button class="cta" id="copy-btn" onclick="copyPlan()">Copiar el plan</button>
+      <a class="cta wa wa-share" href="#" target="_blank" rel="noopener">Mandar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
 <!-- QUE INCLUYE -->
 <section class="incluye" id="incluye">
   <div class="wrap">
@@ -349,6 +392,18 @@ section{padding:96px 0}
       <div class="cell"><div class="ic">✈️</div><h4>Vuelos</h4><p>Aéreo ida y vuelta a Bariloche, USD 170 por persona.</p></div>
       <div class="cell"><div class="ic">🚙</div><h4>Autos</h4><p>Alquiler para moverse por los circuitos toda la semana.</p></div>
       <div class="cell"><div class="ic">🚣</div><h4>Rafting</h4><p>Bajada por el Río Manso ya contemplada como extra del grupo.</p></div>
+      <div class="cell"><div class="ic">⛽</div><h4>Nafta</h4><p>Combustible estimado para los 2 autos toda la semana, ripio incluido.</p></div>
+    </div>
+
+    <div class="sec-head" style="margin-top:72px;margin-bottom:36px">
+      <p class="eyebrow">Para que nadie se sorprenda</p>
+      <h2>Qué no entra</h2>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="ic">🍽️</div><h4>Comidas</h4><p>Supermercado, asados y salidas a comer se dividen aparte durante la semana.</p></div>
+      <div class="cell"><div class="ic">⛵</div><h4>Excursiones opcionales</h4><p>Catamarán a Puerto Blest o Isla Victoria, aerosillas y cabalgatas se pagan en el momento.</p></div>
+      <div class="cell"><div class="ic">🛡️</div><h4>Seguro de viaje</h4><p>Cobertura médica opcional; conviene cotizarla por persona antes de enero.</p></div>
+      <div class="cell"><div class="ic">🍫</div><h4>Extras y antojos</h4><p>Chocolates, souvenirs y la birra artesanal de cada tarde van por cuenta de cada uno.</p></div>
     </div>
   </div>
 </section>
@@ -359,7 +414,10 @@ section{padding:96px 0}
     <p class="eyebrow">A un sí de distancia</p>
     <h2 id="cierre-title">Opción 1 · USD 656 por cabeza</h2>
     <p>Misma semana, misma patota. Solo falta decidir si arrancamos el día abriendo la puerta al lago o entre los árboles. Volvé arriba y comparen las dos.</p>
-    <button class="cta" onclick="toggleOption()">Comparar la otra opción →</button>
+    <div class="cta-row">
+      <button class="cta" onclick="toggleOption()">Comparar la otra opción →</button>
+      <a class="cta wa wa-share" href="#" target="_blank" rel="noopener">Mandar por WhatsApp</a>
+    </div>
   </div>
 </section>
 
@@ -463,10 +521,58 @@ DAYS.forEach((d,di)=>{
     </div>`);
 });
 
+/* ---------- PLAN ARMADO ---------- */
+let sel = {};
+try{ sel = JSON.parse(localStorage.getItem('bari-plan')||'{}'); }catch(e){}
+
 function pick(el){
   const day = el.dataset.day;
   document.querySelectorAll(`.opt[data-day="${day}"]`).forEach(o=>{ if(o!==el) o.classList.remove('sel'); });
   el.classList.toggle('sel');
+  if(el.classList.contains('sel')) sel[day]=+el.dataset.opt; else delete sel[day];
+  localStorage.setItem('bari-plan',JSON.stringify(sel));
+  renderPlan();
+}
+
+function renderPlan(){
+  document.getElementById('plan-list').innerHTML = DAYS.map((d,i)=>{
+    const o = sel[i]!==undefined ? d.o[sel[i]] : null;
+    return `<div class="plan-row"><span class="d">DÍA ${d.n}</span>`+
+      (o ? `<span class="t">${o.h}</span>` : `<span class="empty">todavía sin elegir — tocá un plan arriba</span>`)+
+      `</div>`;
+  }).join('');
+  updateWa();
+}
+
+function planText(){
+  const o = OPT[current];
+  let t = `🏔️ Bariloche · 13–20 ene 2027 · 8 personas\n${o.title}\n💵 USD ${o.pp} por persona, todo incluido · ${o.grp} el grupo\n\n📅 El plan:\n`;
+  DAYS.forEach((d,i)=>{ t += `Día ${+d.n} (${d.date}): ${sel[i]!==undefined ? d.o[sel[i]].h : 'a definir'}\n`; });
+  return t;
+}
+
+function updateWa(){
+  const href = 'https://wa.me/?text='+encodeURIComponent(planText());
+  document.querySelectorAll('.wa-share').forEach(a=>a.href=href);
+}
+
+function copyPlan(){
+  navigator.clipboard.writeText(planText()).then(()=>{
+    const b = document.getElementById('copy-btn');
+    b.textContent = '¡Copiado! ✓';
+    setTimeout(()=>{ b.textContent = 'Copiar el plan'; }, 2000);
+  });
+}
+
+/* ---------- MODO OSCURO ---------- */
+function toggleDark(){
+  const dark = document.body.classList.toggle('dark');
+  localStorage.setItem('bari-dark', dark ? '1' : '0');
+  document.getElementById('modeBtn').textContent = dark ? '☀️' : '🌙';
+}
+if(localStorage.getItem('bari-dark')==='1'){
+  document.body.classList.add('dark');
+  document.getElementById('modeBtn').textContent = '☀️';
 }
 
 /* ---------- OPTION SWITCH ---------- */
@@ -501,8 +607,18 @@ function setOption(n){
 
   // lodge cards
   document.querySelectorAll('.lodge-card').forEach(c=>c.classList.toggle('active',+c.dataset.card===n));
+
+  updateWa();
 }
 function toggleOption(){ setOption(current===1?2:1); document.getElementById('numeros').scrollIntoView({behavior:'smooth'}); }
+
+// restore picks saved on this device
+Object.entries(sel).forEach(([d,o])=>{
+  const el = document.querySelector(`.opt[data-day="${d}"][data-opt="${o}"]`);
+  if(el) el.classList.add('sel');
+});
+renderPlan();
+
 window.addEventListener('load',()=>setOption(1));
 window.addEventListener('resize',()=>setOption(current));
 </script>
