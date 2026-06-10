@@ -148,7 +148,9 @@ body.dark .car-nav{background:rgba(26,37,40,.94)}
 .pool-wrap{position:sticky;top:80px}
 .pool-title{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--carbon-soft);margin-bottom:12px}
 .pool{display:flex;flex-direction:column;gap:10px;max-height:72vh;overflow-y:auto;padding-right:6px}
-.acard{background:var(--crema);border:1px solid var(--niebla);border-radius:8px;padding:12px 14px;cursor:grab;display:flex;gap:11px;align-items:flex-start;transition:border-color .25s,box-shadow .25s,transform .25s;user-select:none;-webkit-user-select:none}
+.acard{background:var(--crema);border:1px solid var(--niebla);border-radius:8px;cursor:grab;display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s;user-select:none;-webkit-user-select:none}
+.acard .aimg{width:100%;height:92px;object-fit:cover;pointer-events:none;display:block}
+.acard-body{display:flex;gap:11px;align-items:flex-start;padding:11px 13px}
 .acard:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 6px 18px -12px rgba(20,88,107,.5)}
 .acard:active{cursor:grabbing}
 .acard.dragging{opacity:.45}
@@ -435,7 +437,7 @@ body.dark .day-tip b{color:var(--madera)}
   </div>
 </section>
 
-<div class="foot">BARILOCHE · 13—20 ENE 2027 · 8 VIAJEROS · PROPUESTA</div>
+<div class="foot">BARILOCHE · 13—20 ENE 2027 · 8 VIAJEROS · PROPUESTA<br>fotos de actividades: Wikimedia Commons (CC) · fotos de las casas: Airbnb</div>
 
 <script>
 /* ---------- DATA ---------- */
@@ -559,11 +561,46 @@ const DAYS = [
  {n:"08",date:"Mar 20 ene",sug:"despedida y vuelo"}
 ];
 
+/* fotos de actividades — Wikimedia Commons (CC), salvo 'relax' que usa el patio de la casa */
+const WC = 'https://upload.wikimedia.org/wikipedia/commons/';
+const IMGS = {
+ rafting:    WC+'thumb/7/77/Rafting_em_Brotas.jpg/960px-Rafting_em_Brotas.jpg',
+ cuatri:     WC+'thumb/8/83/Quad-bike_riding_grazier_checking_on_his_flock_-_geograph.org.uk_-_4690258.jpg/960px-Quad-bike_riding_grazier_checking_on_his_flock_-_geograph.org.uk_-_4690258.jpg',
+ mtb:        WC+'thumb/9/9e/Buffalo_Creek_Trail_-_Upper_Buffalo_Mountain_Biking_Trail_System%2C_Ozark_National_Forest_%2846805237334%29.jpg/960px-Buffalo_Creek_Trail_-_Upper_Buffalo_Mountain_Biking_Trail_System%2C_Ozark_National_Forest_%2846805237334%29.jpg',
+ parapente:  WC+'thumb/0/00/Paragliding_high_above_Queenstown.jpg/960px-Paragliding_high_above_Queenstown.jpg',
+ canopy:     WC+'thumb/d/d5/Zip-line_over_rainforest_canopy_4_January_2005%2C_Costa_Rica.jpg/960px-Zip-line_over_rainforest_canopy_4_January_2005%2C_Costa_Rica.jpg',
+ campanario: WC+'thumb/1/1d/Cerro_Campanario_Bariloche_Argentina_-_panoramio.jpg/960px-Cerro_Campanario_Bariloche_Argentina_-_panoramio.jpg',
+ circuito:   WC+'thumb/d/d9/Llao_Llao_Peninsula.jpg/960px-Llao_Llao_Peninsula.jpg',
+ frey:       WC+'thumb/5/55/Refugio_Frey_Catedral.jpg/960px-Refugio_Frey_Catedral.jpg',
+ kayak:      WC+'thumb/f/f1/Lago_Guti%C3%A9rrez_%28Bariloche%29.jpg/960px-Lago_Guti%C3%A9rrez_%28Bariloche%29.jpg',
+ sup:        WC+'thumb/7/70/Stand_up_paddleboarding_2012.jpg/960px-Stand_up_paddleboarding_2012.jpg',
+ pesca:      WC+'thumb/4/48/Fly_Fishing_on_the_River_Irwell_at_Lumb_-_geograph.org.uk_-_2313379.jpg/960px-Fly_Fishing_on_the_River_Irwell_at_Lumb_-_geograph.org.uk_-_2313379.jpg',
+ piletones:  WC+'thumb/c/c7/Rapidos_-_rio_Manso_-_panoramio.jpg/960px-Rapidos_-_rio_Manso_-_panoramio.jpg',
+ cabalgata:  WC+'thumb/d/da/Horse_riding_in_the_Altay_Mountains.jpg/960px-Horse_riding_in_the_Altay_Mountains.jpg',
+ blest:      WC+'thumb/d/dd/Cascada_los_cantaros.jpg/960px-Cascada_los_cantaros.jpg',
+ victoria:   WC+'thumb/b/bb/Isla_Victoria_Lago_Nahuel_Huapi_%282408%29.jpg/960px-Isla_Victoria_Lago_Nahuel_Huapi_%282408%29.jpg',
+ otto:       WC+'c/cd/Cerro_Otto_-_Bariloche.jpg',
+ tronador:   WC+'thumb/5/5b/Ventisquero_Negro_2023.jpg/960px-Ventisquero_Negro_2023.jpg',
+ sietelagos: WC+'thumb/7/78/Lago_Espejo._Ruta_de_los_siete_lagos._Neuqu%C3%A9n.jpg/960px-Lago_Espejo._Ruta_de_los_siete_lagos._Neuqu%C3%A9n.jpg',
+ angostura:  WC+'thumb/4/42/Bah%C3%ADa_Mansa%2C_Villa_La_Angostura.-.jpg/960px-Bah%C3%ADa_Mansa%2C_Villa_La_Angostura.-.jpg',
+ traful:     WC+'thumb/a/a9/Vista_Lago_Traful.jpg/960px-Vista_Lago_Traful.jpg',
+ bolson:     WC+'thumb/9/95/Piltriquitron_desde_El_Bols%C3%B3n.jpg/960px-Piltriquitron_desde_El_Bols%C3%B3n.jpg',
+ cerveceras: WC+'thumb/7/77/Green_Beacon_Brewing_Company_15.JPG/960px-Green_Beacon_Brewing_Company_15.JPG',
+ chocolates: WC+'thumb/b/b6/Centro_c%C3%ADvico_de_San_Carlos_de_Bariloche_en_2022.jpg/960px-Centro_c%C3%ADvico_de_San_Carlos_de_Bariloche_en_2022.jpg',
+ curanto:    WC+'thumb/6/6a/Destape_de_curanto.JPG/960px-Destape_de_curanto.JPG',
+ asado:      WC+'thumb/c/c7/Asado_argentino_a_la_parrilla_con_chorizos_y_achuras.jpg/960px-Asado_argentino_a_la_parrilla_con_chorizos_y_achuras.jpg',
+ playabonita:WC+'thumb/b/b5/Playa_Bonita%2C_Lago_Nahuel_Huapi%2C_Bariloche.JPG/960px-Playa_Bonita%2C_Lago_Nahuel_Huapi%2C_Bariloche.JPG',
+ relax:      'https://a0.muscache.com/im/pictures/cb8e8058-bd65-43a3-a4d5-44cc8fdbe2f5.jpg?im_w=720'
+};
+
 /* ---------- RENDER PLANNER ---------- */
 document.getElementById('pool').innerHTML = ACTS.map(a=>
   `<div class="acard" draggable="true" data-id="${a.id}" ondragstart="dragStart(event,'${a.id}')" ondragend="this.classList.remove('dragging')" onclick="tapCard(this,'${a.id}')">`+
-    `<span class="ic">${a.ic}</span>`+
-    `<div><span class="tag">${a.tag}</span><h4>${a.h}</h4><p>${a.p}</p></div>`+
+    `<img class="aimg" src="${IMGS[a.id]}" alt="${a.h}" loading="lazy" draggable="false" onerror="this.style.display='none'">`+
+    `<div class="acard-body">`+
+      `<span class="ic">${a.ic}</span>`+
+      `<div><span class="tag">${a.tag}</span><h4>${a.h}</h4><p>${a.p}</p></div>`+
+    `</div>`+
   `</div>`).join('');
 
 function renderBoard(){
