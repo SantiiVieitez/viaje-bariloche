@@ -144,10 +144,10 @@ body.dark .car-nav{background:rgba(26,37,40,.94)}
 
 /* ---------- ITINERARIO / PLANIFICADOR ---------- */
 .itin{background:var(--crema-2)}
-.planner{display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:start}
-.pool-wrap{position:sticky;top:80px}
-.pool-title{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--carbon-soft);margin-bottom:12px}
-.pool{display:flex;flex-direction:column;gap:10px;max-height:72vh;overflow-y:auto;padding-right:6px}
+.pool-title{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--carbon-soft);margin-bottom:14px}
+.board-gap{margin-top:44px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pool{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px}
 .acard{background:var(--crema);border:1px solid var(--niebla);border-radius:8px;cursor:grab;display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s;user-select:none;-webkit-user-select:none}
 .acard .aimg{width:100%;height:92px;object-fit:cover;pointer-events:none;display:block}
 .acard-body{display:flex;gap:11px;align-items:flex-start;padding:11px 13px}
@@ -159,23 +159,23 @@ body.dark .car-nav{background:rgba(26,37,40,.94)}
 .acard .tag{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-dk);transition:color .5s}
 .acard h4{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:500;margin:3px 0}
 .acard p{font-size:.78rem;color:var(--carbon-soft);line-height:1.45}
-.dayrow{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--niebla);align-items:center}
-.dayrow:first-child{border-top:none}
-.day-num{display:block;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;transition:color .5s}
-.day-info .date{font-family:'Space Mono',monospace;font-size:.64rem;color:var(--carbon-soft);letter-spacing:.08em}
-.day-info .sug{font-size:.74rem;color:var(--carbon-soft);font-style:italic;margin-top:2px}
-.dropzone{min-height:60px;border:1.5px dashed var(--niebla);border-radius:8px;padding:9px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;transition:border-color .2s,background .2s;cursor:pointer}
-.dropzone.over{border-color:var(--accent);background:var(--accent-soft)}
-.dz-hint{font-size:.74rem;color:var(--carbon-soft);font-style:italic;padding-left:4px}
-.achip{display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:6px 7px 6px 12px;font-size:.82rem;transition:border-color .5s,background .5s}
-.achip b{width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:600;flex:none;transition:background .5s}
+.daybox{border:1.5px dashed var(--niebla);border-radius:10px;padding:14px;min-height:160px;display:flex;flex-direction:column;gap:6px;background:var(--crema);transition:border-color .2s,background .2s;cursor:pointer}
+.daybox.over{border-color:var(--accent);background:var(--accent-soft)}
+.daybox .dh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.day-num{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.14em;color:var(--accent-dk);font-weight:700;transition:color .5s}
+.daybox .date{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--carbon-soft);letter-spacing:.06em}
+.daybox .sug{font-size:.72rem;color:var(--carbon-soft);font-style:italic}
+.daybox .chips{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:6px}
+.dz-hint{font-size:.72rem;color:var(--carbon-soft);font-style:italic}
+.achip{display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:5px 6px 5px 11px;font-size:.78rem;transition:border-color .5s,background .5s;text-align:left}
+.achip b{width:17px;height:17px;border-radius:50%;background:var(--accent);color:#fff;font-size:.66rem;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:600;flex:none;transition:background .5s}
 body.dark .acard .tag{color:var(--accent)}
 @media (max-width:900px){
-  .planner{grid-template-columns:1fr}
-  .pool-wrap{position:static}
-  .pool{flex-direction:row;overflow-x:auto;max-height:none;padding-bottom:8px}
-  .acard{flex:0 0 235px}
-  .dayrow{grid-template-columns:1fr;gap:8px}
+  .board{grid-template-columns:repeat(2,1fr)}
+  .daybox{min-height:130px}
+}
+@media (max-width:480px){
+  .pool{grid-template-columns:1fr 1fr}
 }
 
 /* ---------- INCLUYE ---------- */
@@ -371,11 +371,10 @@ body.dark .day-tip b{color:var(--madera)}
       <p>Arrastrá las tarjetas a los días — o tocá una tarjeta y después el día. Entran varias por día, podés repetir, y lo que armen queda guardado y baja al resumen.</p>
     </div>
     <div class="planner">
-      <div class="pool-wrap">
-        <p class="pool-title">27 actividades · arrastrá las que quieras</p>
-        <div class="pool" id="pool"></div>
-      </div>
+      <p class="pool-title">Días · soltá actividades en cada casillero</p>
       <div class="board" id="board"></div>
+      <p class="pool-title board-gap">27 actividades · arrastrá las que quieras a un día</p>
+      <div class="pool" id="pool"></div>
     </div>
   </div>
 </section>
@@ -609,11 +608,10 @@ function renderBoard(){
       const a = ACTS.find(x=>x.id===id);
       return `<span class="achip">${a.ic} ${a.h}<b onclick="event.stopPropagation();removeAct(${i},${j})" title="Sacar del día">×</b></span>`;
     }).join('');
-    return `<div class="dayrow">`+
-      `<div class="day-info"><span class="day-num">DÍA ${d.n}</span><span class="date">${d.date}</span><div class="sug">${d.sug}</div></div>`+
-      `<div class="dropzone" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropAct(event,${i})" onclick="zoneTap(${i})">`+
-        (chips || `<span class="dz-hint">arrastrá una actividad acá — o tocá una y después este día</span>`)+
-      `</div>`+
+    return `<div class="daybox" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropAct(event,${i})" onclick="zoneTap(${i})">`+
+      `<div class="dh"><span class="day-num">DÍA ${d.n}</span><span class="date">${d.date}</span></div>`+
+      `<div class="sug">${d.sug}</div>`+
+      `<div class="chips">${chips || `<span class="dz-hint">soltá una actividad acá</span>`}</div>`+
     `</div>`;
   }).join('');
   renderPlan();
