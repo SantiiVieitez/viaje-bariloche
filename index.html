@@ -127,10 +127,17 @@ section{padding:96px 0}
 .stats div strong{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500}
 .lodge-feature{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3;background:var(--lago)}
 .lodge-feature img{width:100%;height:100%;object-fit:cover}
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.gallery a{border-radius:5px;overflow:hidden;aspect-ratio:1;background:var(--niebla);display:block}
-.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.gallery a:hover img{transform:scale(1.07)}
+.car-title{margin:38px 0 14px}
+.carousel{position:relative}
+.car-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:6px}
+.car-track::-webkit-scrollbar{display:none}
+.car-slide{flex:0 0 min(420px,80%);scroll-snap-align:start;border-radius:6px;overflow:hidden;position:relative;aspect-ratio:4/3;background:var(--niebla);display:block}
+.car-slide img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.car-slide:hover img{transform:scale(1.05)}
+.car-slide .cap{position:absolute;left:10px;bottom:10px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(12,59,71,.74);color:#fff;padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--niebla);background:rgba(251,248,241,.94);color:var(--carbon);font-size:1.05rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.16);z-index:2;display:flex;align-items:center;justify-content:center}
+.car-nav.prev{left:-10px}.car-nav.next{right:-10px}
+body.dark .car-nav{background:rgba(26,37,40,.94)}
 .lodge-amen{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .chip{font-size:.82rem;color:var(--carbon-soft);background:var(--crema-2);border:1px solid var(--niebla);padding:7px 14px;border-radius:999px}
 .lodge-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:600;color:var(--accent-dk);text-decoration:none;font-size:.92rem;border-bottom:1.5px solid var(--accent);padding-bottom:2px;transition:color .5s,border-color .5s}
@@ -308,12 +315,8 @@ body.dark .day-tip b{color:var(--madera)}
           <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/8c1428a0-5d16-485e-a252-248c663fe98b.jpeg?im_w=1200" alt="Cabaña con costa de lago" onerror="this.parentNode.style.display='none'">
         </div>
       </div>
-      <div class="gallery">
-        <a href="https://a0.muscache.com/im/pictures/a6aa6b04-1726-41e2-9347-34b971645d0b.jpg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/a6aa6b04-1726-41e2-9347-34b971645d0b.jpg?im_w=720" alt="Interior"></a>
-        <a href="https://a0.muscache.com/im/pictures/0cce6585-d67f-4e66-a367-78cfc3f8cacd.jpg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/0cce6585-d67f-4e66-a367-78cfc3f8cacd.jpg?im_w=720" alt="Estar"></a>
-        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/3cceda9a-9755-441d-bb38-f065eeb01038.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/3cceda9a-9755-441d-bb38-f065eeb01038.jpeg?im_w=720" alt="Ambiente"></a>
-        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/0c65eace-8cad-4a91-a134-957e89638ab3.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/0c65eace-8cad-4a91-a134-957e89638ab3.jpeg?im_w=720" alt="Dormitorio"></a>
-      </div>
+      <p class="eyebrow car-title">La casa por dentro · recorrela ambiente por ambiente</p>
+      <div class="carousel" data-casa="1"></div>
       <div class="lodge-amen">
         <span class="chip">Costa de lago</span><span class="chip">Parrilla y jardín</span><span class="chip">Chimenea central</span><span class="chip">2 cocinas completas</span><span class="chip">Estacionamiento</span><span class="chip">Wi-Fi · calefacción</span>
       </div>
@@ -338,12 +341,8 @@ body.dark .day-tip b{color:var(--madera)}
           <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/326748f1-5a11-4498-bf4b-4c429dcc46ca.jpeg?im_w=1200" alt="Casa de montaña en el bosque" onerror="this.parentNode.style.display='none'">
         </div>
       </div>
-      <div class="gallery">
-        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/b1ce88e0-a5fa-4e26-9a44-3e88aa2b2a40.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/b1ce88e0-a5fa-4e26-9a44-3e88aa2b2a40.jpeg?im_w=720" alt="Interior"></a>
-        <a href="https://a0.muscache.com/im/pictures/airflow/Hosting-1540032534318547483/original/6fb448c4-2d93-497c-9cb6-58ffab8a8b7e.jpg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/airflow/Hosting-1540032534318547483/original/6fb448c4-2d93-497c-9cb6-58ffab8a8b7e.jpg?im_w=720" alt="Living con ventanal"></a>
-        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/33f8d7a6-0986-4291-ab16-d65e13255328.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/33f8d7a6-0986-4291-ab16-d65e13255328.jpeg?im_w=720" alt="Comedor"></a>
-        <a href="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/8de09bed-49fa-4701-a668-403c69cd019e.jpeg?im_w=1200" target="_blank" rel="noopener"><img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/8de09bed-49fa-4701-a668-403c69cd019e.jpeg?im_w=720" alt="Dormitorio"></a>
-      </div>
+      <p class="eyebrow car-title">La casa por dentro · recorrela ambiente por ambiente</p>
+      <div class="carousel" data-casa="2"></div>
       <div class="lodge-amen">
         <span class="chip">Pileta climatizada</span><span class="chip">Spa y gimnasio del club</span><span class="chip">Bosque nativo</span><span class="chip">Vistas lago + montaña</span><span class="chip">Cerca Cerro Catedral</span><span class="chip">Diseño de arquitecto</span>
       </div>
@@ -437,6 +436,71 @@ const OPT = {
       cierre:"Opción 2 · USD 814 por cabeza",
       heroH1:'Siete noches<br>perdidos entre<br>los <em>cerros</em>' },
 };
+
+/* ---------- FOTOS DE LAS CASAS ---------- */
+const P1 = 'https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/';
+const P1b = 'https://a0.muscache.com/im/pictures/';
+const P2 = 'https://a0.muscache.com/im/pictures/hosting/Hosting-1540032534318547483/original/';
+const P2a = 'https://a0.muscache.com/im/pictures/airflow/Hosting-1540032534318547483/original/';
+const CASAS = {
+  1:[
+    {c:'Exterior',    u:P1+'2d28a7ba-70af-410e-8599-f1f351092ea3.jpeg'},
+    {c:'Exterior',    u:P1b+'0cce6585-d67f-4e66-a367-78cfc3f8cacd.jpg'},
+    {c:'Exterior',    u:P1b+'a6aa6b04-1726-41e2-9347-34b971645d0b.jpg'},
+    {c:'Living',      u:P1+'bf67f5a0-ff79-430e-a09b-b4a54abe22a1.jpeg'},
+    {c:'Living',      u:P1+'7878934f-a2db-4b62-94c2-ce547cb6d179.jpeg'},
+    {c:'Living',      u:P1+'022ccaa6-2b9c-4b76-8c25-30f82b2bdd0d.jpeg'},
+    {c:'Living 2° piso', u:P1+'56f46780-a9f0-4606-8f7c-7cdc69ec68f3.jpeg'},
+    {c:'Cocina',      u:P1+'4f73a9b2-2e4c-4d02-8ed3-626c1fab888d.jpeg'},
+    {c:'Dormitorio 1',u:P1+'0c65eace-8cad-4a91-a134-957e89638ab3.jpeg'},
+    {c:'Dormitorio 2',u:P1+'2eb058fb-c0ce-4895-b54f-d1b7fbba508d.jpeg'},
+    {c:'Dormitorio 3',u:P1+'222e4878-6950-49de-83f3-f75546918972.jpeg'},
+    {c:'Dormitorio 4',u:P1+'8b84056f-141a-4c33-a07f-d73a819a17f6.jpeg'},
+    {c:'Baño 1',      u:P1+'4600aa90-2f74-4acc-b85e-105e8784f043.jpeg'},
+    {c:'Baño 2',      u:P1+'a94c9fb9-50fe-4352-8e00-02423ecadcc2.jpeg'},
+    {c:'Patio',       u:P1+'8c1428a0-5d16-485e-a252-248c663fe98b.jpeg'},
+    {c:'Patio',       u:P1+'19be9858-8128-49e9-a817-8746f8e86ddb.jpeg'},
+    {c:'Patio · lago',u:P1b+'d6a0cd3d-5b21-4a1f-8a26-630f6063f9f6.jpg'},
+    {c:'Patio · lago',u:P1b+'cb8e8058-bd65-43a3-a4d5-44cc8fdbe2f5.jpg'}
+  ],
+  2:[
+    {c:'Exterior',    u:P2+'326748f1-5a11-4498-bf4b-4c429dcc46ca.jpeg'},
+    {c:'Exterior',    u:P2+'74771dfb-8702-4bd1-b576-808e144cb329.jpeg'},
+    {c:'Exterior',    u:P2+'b1ce88e0-a5fa-4e26-9a44-3e88aa2b2a40.jpeg'},
+    {c:'Exterior',    u:P2+'6681fdc7-7640-48f3-a341-4cf0a6675d89.jpeg'},
+    {c:'Living',      u:P2a+'6fb448c4-2d93-497c-9cb6-58ffab8a8b7e.jpg'},
+    {c:'Living',      u:P2a+'e9dff33c-0701-434d-8c39-733229092c4f.jpg'},
+    {c:'Comedor',     u:P2+'20853118-f5d8-423a-a185-532055903b39.jpeg'},
+    {c:'Comedor',     u:P2+'ce9e89ff-6de0-4ae3-b567-aebb6cdde276.jpeg'},
+    {c:'Cocina',      u:P2+'33f8d7a6-0986-4291-ab16-d65e13255328.jpeg'},
+    {c:'Dormitorio 1',u:P2+'8de09bed-49fa-4701-a668-403c69cd019e.jpeg'},
+    {c:'Dormitorio 2',u:P2+'519e725e-63ef-4c4f-8a27-fb7426d81100.jpeg'},
+    {c:'Dormitorio 3',u:P2+'d21de87c-257f-4b51-8406-72520885276d.jpeg'},
+    {c:'Dormitorio 4',u:P2+'9f2b8295-1856-420b-8072-6f8583bef1fa.jpeg'},
+    {c:'Baño 1',      u:P2+'5daee7a1-34ca-424e-b03c-e1a8f7d69c86.jpeg'},
+    {c:'Baño 2',      u:P2+'487e3060-97b4-4289-9cf4-93b2636f1cce.jpeg'},
+    {c:'Balcón',      u:P2+'acc885bb-130c-4450-b154-225dddebad8e.jpeg'},
+    {c:'Balcón',      u:P2+'cebf9bd8-98b2-4273-89b1-bd6e043ea854.jpeg'}
+  ]
+};
+
+document.querySelectorAll('.carousel').forEach(c=>{
+  const fotos = CASAS[c.dataset.casa];
+  c.innerHTML =
+    `<button class="car-nav prev" onclick="slide(this,-1)" aria-label="Foto anterior">←</button>`+
+    `<div class="car-track">`+fotos.map(f=>
+      `<a class="car-slide" href="${f.u}?im_w=1200" target="_blank" rel="noopener">`+
+        `<img src="${f.u}?im_w=720" alt="${f.c}" loading="lazy" onerror="this.parentNode.style.display='none'">`+
+        `<span class="cap">${f.c}</span>`+
+      `</a>`).join('')+
+    `</div>`+
+    `<button class="car-nav next" onclick="slide(this,1)" aria-label="Foto siguiente">→</button>`;
+});
+
+function slide(btn,dir){
+  const t = btn.parentElement.querySelector('.car-track');
+  t.scrollBy({left:dir*t.clientWidth*0.8,behavior:'smooth'});
+}
 
 /* ---------- ITINERARY ---------- */
 const DAYS = [
