@@ -267,11 +267,6 @@ body.dark .day-tip b{color:var(--madera)}
 .rv.in{animation:rise .85s cubic-bezier(.22,1,.36,1) both}
 .lodge-feature{transition:transform .25s ease-out;will-change:transform}
 .lodge-feature img{will-change:transform;transform:scale(1.12)}
-.marquee{overflow:hidden;background:var(--accent-dk);padding:18px 0;transition:background .5s ease}
-.marquee-inner{display:inline-flex;white-space:nowrap;animation:mq 30s linear infinite;will-change:transform}
-.marquee span{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4.5vw,3.2rem);color:#fff;padding-right:.55em;line-height:1.15}
-.marquee span.o{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.8)}
-@keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.rv.in{opacity:1!important;transform:none!important;filter:none!important}}
 </style>
 </head>
@@ -311,9 +306,6 @@ body.dark .day-tip b{color:var(--madera)}
     </div>
   </div>
 </header>
-
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true"><div class="marquee-inner" id="mq1"></div></div>
 
 <!-- RESUMEN / NUMEROS -->
 <section class="resumen" id="numeros">
@@ -528,9 +520,6 @@ body.dark .day-tip b{color:var(--madera)}
     </div>
   </div>
 </section>
-
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true"><div class="marquee-inner" id="mq2"></div></div>
 
 <!-- CIERRE -->
 <section class="cierre" id="cierre">
@@ -1028,14 +1017,6 @@ document.addEventListener('animationend',e=>{
     e.target.style.animationDelay='';
   }
 });
-
-/* marquesinas */
-function fillMq(id,words){
-  const s = words.map((w,i)=>`<span class="${i%2?'o':''}">${w} —</span>`).join('');
-  document.getElementById(id).innerHTML = s+s+s+s+s+s;
-}
-fillMq('mq1',['El lago','La montaña','El Atlántico','Verano 2027']);
-fillMq('mq2',['¿Nos vamos?','7 noches','8 amigos','Un solo sí']);
 
 /* parallax + barra de progreso */
 const heroSec = document.getElementById('hero-section');
