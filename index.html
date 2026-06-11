@@ -175,8 +175,27 @@ body.dark .acard .tag{color:var(--accent)}
   .board{grid-template-columns:repeat(2,1fr)}
   .daybox{min-height:130px}
 }
-@media (max-width:480px){
-  .pool{grid-template-columns:1fr 1fr}
+@media (max-width:560px){
+  body{overflow-x:clip}
+  .board{grid-template-columns:1fr;gap:10px}
+  .daybox{min-height:0}
+  .pool{grid-template-columns:1fr 1fr;gap:10px}
+  .acard .aimg{height:78px}
+  .acard-body{padding:9px 11px;gap:8px}
+  .acard h4{font-size:.9rem}
+  .acard p{font-size:.7rem}
+  .achip{max-width:100%}
+  .car-nav{width:36px;height:36px}
+  .car-nav.prev{left:8px}
+  .car-nav.next{right:8px}
+  .car-slide{flex:0 0 86%}
+  .hero-meta{gap:16px 24px}
+  .plan-actions{flex-direction:column}
+  .plan-actions .cta,.cta-row .cta{width:100%;justify-content:center}
+  .plan-row{flex-direction:column;gap:4px}
+  .totalgroup{gap:6px;flex-direction:column;align-items:flex-start}
+  .lodge-top h3{font-size:1.55rem}
+  .stats{gap:18px}
 }
 
 /* ---------- INCLUYE ---------- */
