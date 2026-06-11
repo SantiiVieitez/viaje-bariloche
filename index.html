@@ -228,6 +228,9 @@ body.dark .day-tip b{color:var(--madera)}
 @media (max-width:760px){
   .wrap{padding:0 20px}
   section{padding:64px 0}
+  .optbar .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:10px;justify-content:center;gap:10px}
+  .switch{max-width:100%;overflow-x:auto}
+  .switch button{padding:7px 11px;font-size:.72rem}
   .lodge-top{grid-template-columns:1fr;gap:24px}
   .gallery{grid-template-columns:repeat(2,1fr)}
   .optbar .brand small{display:none}
@@ -241,12 +244,14 @@ body.dark .day-tip b{color:var(--madera)}
 <!-- TOGGLE BAR -->
 <div class="optbar">
   <div class="wrap">
-    <div class="brand">Bariloche 2027<small>Propuesta · 8 personas</small></div>
+    <div class="brand">Verano 2027<small>Propuesta · 8 personas</small></div>
     <div class="optbar-right">
       <div class="switch" id="switch">
         <span class="glider" id="glider"></span>
-        <button class="active" data-opt="1" onclick="setOption(1)">Opción 1 · Lago</button>
-        <button data-opt="2" onclick="setOption(2)">Opción 2 · Montaña</button>
+        <button class="active" data-opt="1" onclick="setOption(1)">1 · Lago</button>
+        <button data-opt="2" onclick="setOption(2)">2 · Montaña</button>
+        <button data-opt="3" onclick="setOption(3)">3 · Crucero + pack</button>
+        <button data-opt="4" onclick="setOption(4)">4 · Crucero</button>
       </div>
       <button class="mode-btn" id="modeBtn" onclick="toggleDark()" aria-label="Cambiar modo claro/oscuro">🌙</button>
     </div>
@@ -255,13 +260,13 @@ body.dark .day-tip b{color:var(--madera)}
 
 <!-- HERO -->
 <header class="hero" id="hero-section">
-  <img class="hero-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/963bd3ed-5c2c-4c61-b316-074c61373117.jpeg?im_w=1600" alt="Vista al lago Nahuel Huapi" onerror="this.style.display='none'">
+  <img class="hero-img" id="hero-img" src="https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/963bd3ed-5c2c-4c61-b316-074c61373117.jpeg?im_w=1600" alt="Vista del destino" onerror="this.style.display='none'">
   <div class="wrap">
     <p class="eyebrow">San Carlos de Bariloche · Patagonia Argentina</p>
     <h1 id="hero-h1">Siete noches<br>al pie del <em>lago</em></h1>
     <p class="sub">Una semana entre el Nahuel Huapi, los cerros y los bosques. Dos casas para ocho, dos formas de vivir el mismo verano patagónico.</p>
     <div class="hero-meta">
-      <div><span>Fechas</span><strong>13 — 20 ene</strong></div>
+      <div><span>Fechas</span><strong id="hero-fechas">13 — 20 ene</strong></div>
       <div><span>Noches</span><strong>7</strong></div>
       <div><span>Viajeros</span><strong>8</strong></div>
       <div><span>Desde</span><strong id="hero-price">USD 656</strong></div>
@@ -275,7 +280,7 @@ body.dark .day-tip b{color:var(--madera)}
     <div class="sec-head">
       <p class="eyebrow">Los números</p>
       <h2 id="res-title">Opción 1 · Cabaña con costa de lago</h2>
-      <p>Todo incluido por persona: hospedaje, vuelos, autos y el rafting del Río Manso. Cambiá la opción arriba para ver cómo se mueve el total.</p>
+      <p id="res-desc">Todo incluido por persona: hospedaje, vuelos, autos, nafta y el rafting del Río Manso. Cambiá la opción arriba para ver cómo se mueve el total.</p>
     </div>
 
     <div class="bigprice">
@@ -284,14 +289,25 @@ body.dark .day-tip b{color:var(--madera)}
     </div>
     <p class="price-note">Equivale a <strong id="pp-perday">USD 82</strong> por persona por día. Estadía completa para los 8.</p>
 
-    <div class="breakdown">
-      <div class="row"><div class="l">Hospedaje</div><div class="v" id="b-host">USD 288</div><div class="s" id="b-host-grp">USD 2.300 el grupo</div></div>
-      <div class="row"><div class="l">Vuelos</div><div class="v">USD 170</div><div class="s">USD 1.360 el grupo</div></div>
-      <div class="row"><div class="l">Autos</div><div class="v">USD 107</div><div class="s">USD 852 el grupo</div></div>
-      <div class="row"><div class="l">Rafting</div><div class="v">USD 70</div><div class="s">Río Manso · extra</div></div>
-      <div class="row"><div class="l">Nafta (est.)</div><div class="v">USD 22</div><div class="s">USD 173 · ~$252.000 ARS</div></div>
+    <div id="bk-bari">
+      <div class="breakdown">
+        <div class="row"><div class="l">Hospedaje</div><div class="v" id="b-host">USD 288</div><div class="s" id="b-host-grp">USD 2.300 el grupo</div></div>
+        <div class="row"><div class="l">Vuelos</div><div class="v">USD 170</div><div class="s">USD 1.360 el grupo</div></div>
+        <div class="row"><div class="l">Autos</div><div class="v">USD 107</div><div class="s">USD 852 el grupo</div></div>
+        <div class="row"><div class="l">Rafting</div><div class="v">USD 70</div><div class="s">Río Manso · extra</div></div>
+        <div class="row"><div class="l">Nafta (est.)</div><div class="v">USD 22</div><div class="s">USD 173 · ~$252.000 ARS</div></div>
+      </div>
+      <p style="font-size:.75rem;color:rgba(255,255,255,.42);margin-top:10px">* Nafta estimada a $1.880/L y ~9 L/100 km · 2 Fiat Cronos · ~1.490 km en total</p>
     </div>
-    <p style="font-size:.75rem;color:rgba(255,255,255,.42);margin-top:10px">* Nafta estimada a $1.880/L y ~9 L/100 km · 2 Fiat Cronos · ~1.490 km en total</p>
+    <div id="bk-cru" style="display:none">
+      <div class="breakdown">
+        <div class="row"><div class="l">Crucero (cabinas)</div><div class="v" id="bkc-pp">USD 1.175</div><div class="s" id="bkc-grp">USD 9.403 el grupo</div></div>
+        <div class="row"><div class="l">Pack de bebidas</div><div class="v" id="bkc-pack">Sí</div><div class="s" id="bkc-pack-s">incluido en el precio</div></div>
+        <div class="row"><div class="l">Puertos</div><div class="v">3</div><div class="s">Santos · Camboriú · Punta del Este</div></div>
+        <div class="row"><div class="l">Navegación</div><div class="v">3 días</div><div class="s">piletas, aquapark y shows a bordo</div></div>
+      </div>
+      <p style="font-size:.75rem;color:rgba(255,255,255,.42);margin-top:10px">* MSC Seaview · ida y vuelta desde Buenos Aires · 18 al 25 de febrero de 2027</p>
+    </div>
 
     <div class="totalgroup">
       <span class="lab">Total del grupo (8 personas)</span>
@@ -305,8 +321,8 @@ body.dark .day-tip b{color:var(--madera)}
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Dónde dormimos</p>
-      <h2>La casa</h2>
-      <p>Las dos entran cómodas para los ocho. Una abre al lago; la otra se mete en el bosque, con pileta climatizada. Elegí arriba y la propuesta entera se acomoda.</p>
+      <h2 id="lodge-title">La casa</h2>
+      <p id="lodge-desc">Las dos entran cómodas para los ocho. Una abre al lago; la otra se mete en el bosque, con pileta climatizada. Elegí arriba y la propuesta entera se acomoda.</p>
     </div>
 
     <!-- OPCION 1 -->
@@ -360,6 +376,32 @@ body.dark .day-tip b{color:var(--madera)}
       </div>
       <a class="lodge-link" href="https://www.airbnb.com.ar/rooms/1540032534318547483" target="_blank" rel="noopener">Ver el aviso en Airbnb →</a>
     </div>
+
+    <!-- OPCIONES 3 Y 4 · CRUCERO -->
+    <div class="lodge-card" data-card="cru">
+      <div class="lodge-top">
+        <div>
+          <span class="badge">🚢 MSC Seaview · ida y vuelta desde Buenos Aires</span>
+          <h3>MSC Seaview · 7 noches por el Atlántico</h3>
+          <p class="desc">Crucero redondo desde Buenos Aires con escalas en Santos (São Paulo), Camboriú (anclaje) y Punta del Este (anclaje), y tres días enteros de navegación. Comidas y entretenimiento incluidos; las opciones 3 y 4 son el mismo barco y el mismo recorrido — cambia solo el pack de bebidas.</p>
+          <div class="stats">
+            <div><span>Noches</span><strong>7</strong></div>
+            <div><span>Puertos</span><strong>3</strong></div>
+            <div><span>Días de barco</span><strong>3</strong></div>
+            <div><span>Cabinas</span><strong>4</strong></div>
+          </div>
+        </div>
+        <div class="lodge-feature">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MSC_Seaview.jpg/960px-MSC_Seaview.jpg" alt="MSC Seaview" onerror="this.parentNode.style.display='none'">
+        </div>
+      </div>
+      <p class="eyebrow car-title">El barco · en el mar y en puerto</p>
+      <div class="carousel" data-casa="cru"></div>
+      <div class="lodge-amen">
+        <span class="chip">Piletas y aquapark</span><span class="chip">Tirolesa sobre cubierta</span><span class="chip">Teatro y shows</span><span class="chip">Casino y bares</span><span class="chip">Buffet y restaurantes</span><span class="chip">Spa y gimnasio</span>
+      </div>
+      <a class="lodge-link" href="https://www.msccruceros.com.ar" target="_blank" rel="noopener">Ver MSC Cruceros →</a>
+    </div>
   </div>
 </section>
 
@@ -374,7 +416,7 @@ body.dark .day-tip b{color:var(--madera)}
     <div class="planner">
       <p class="pool-title">Días · soltá actividades en cada casillero</p>
       <div class="board" id="board"></div>
-      <p class="pool-title board-gap">27 actividades · arrastrá las que quieras a un día</p>
+      <p class="pool-title board-gap" id="pool-count">27 actividades · arrastrá las que quieras a un día</p>
       <div class="pool" id="pool"></div>
     </div>
   </div>
@@ -403,6 +445,7 @@ body.dark .day-tip b{color:var(--madera)}
       <p class="eyebrow">La letra chica, clara</p>
       <h2>Qué entra en el precio</h2>
     </div>
+    <div id="inc-bari">
     <div class="grid">
       <div class="cell"><div class="ic">🏡</div><h4>Hospedaje</h4><p>7 noches en la casa elegida, para los 8. Check-in 13/1, check-out 20/1.</p></div>
       <div class="cell"><div class="ic">✈️</div><h4>Vuelos</h4><p>Aéreo ida y vuelta a Bariloche, USD 170 por persona.</p></div>
@@ -421,6 +464,27 @@ body.dark .day-tip b{color:var(--madera)}
       <div class="cell"><div class="ic">🛡️</div><h4>Seguro de viaje</h4><p>Cobertura médica opcional; conviene cotizarla por persona antes de enero.</p></div>
       <div class="cell"><div class="ic">🍫</div><h4>Extras y antojos</h4><p>Chocolates, souvenirs y la birra artesanal de cada tarde van por cuenta de cada uno.</p></div>
     </div>
+    </div>
+
+    <div id="inc-cru" style="display:none">
+    <div class="grid">
+      <div class="cell"><div class="ic">🛏️</div><h4>Cabinas</h4><p>7 noches a bordo para los 8, en cabinas dobles. Zarpe 18/2, regreso 25/2.</p></div>
+      <div class="cell"><div class="ic">🍽️</div><h4>Comidas</h4><p>Buffet y restaurantes principales del barco, todos los días.</p></div>
+      <div class="cell"><div class="ic">🎭</div><h4>Entretenimiento</h4><p>Teatro, piletas, aquapark y toda la vida del barco.</p></div>
+      <div class="cell"><div class="ic">🍹</div><h4>Pack de bebidas</h4><p>Solo en la Opción 3: tragos, gaseosas y café sin pasar la tarjeta.</p></div>
+    </div>
+
+    <div class="sec-head" style="margin-top:72px;margin-bottom:36px">
+      <p class="eyebrow">Para que nadie se sorprenda</p>
+      <h2>Qué no entra</h2>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="ic">🚖</div><h4>Traslados</h4><p>Hasta el puerto de Buenos Aires y la vuelta a casa.</p></div>
+      <div class="cell"><div class="ic">🛥️</div><h4>Excursiones en puerto</h4><p>Lo que hagamos en Santos, Camboriú y Punta del Este va aparte.</p></div>
+      <div class="cell"><div class="ic">💵</div><h4>Cargo de servicio</h4><p>La propina diaria que MSC cobra a bordo por persona.</p></div>
+      <div class="cell"><div class="ic">📶</div><h4>Wifi y extras</h4><p>Internet, casino y compras a bordo. En la Opción 4, también todo lo que tomes.</p></div>
+    </div>
+    </div>
   </div>
 </section>
 
@@ -429,29 +493,50 @@ body.dark .day-tip b{color:var(--madera)}
   <div class="wrap">
     <p class="eyebrow">A un sí de distancia</p>
     <h2 id="cierre-title">Opción 1 · USD 656 por cabeza</h2>
-    <p>Misma semana, misma patota. Solo falta decidir si arrancamos el día abriendo la puerta al lago o entre los árboles. Volvé arriba y comparen las dos.</p>
+    <p>Misma patota, cuatro maneras de pasarla bien: el lago, el bosque o el barco — con o sin pack de bebidas. Volvé arriba y comparen.</p>
     <div class="cta-row">
-      <button class="cta" onclick="toggleOption()">Comparar la otra opción →</button>
+      <button class="cta" onclick="toggleOption()">Comparar la siguiente opción →</button>
       <a class="cta wa wa-share" href="#" target="_blank" rel="noopener">Mandar por WhatsApp</a>
     </div>
   </div>
 </section>
 
-<div class="foot">BARILOCHE · 13—20 ENE 2027 · 8 VIAJEROS · PROPUESTA<br>fotos de actividades: Wikimedia Commons (CC) · fotos de las casas: Airbnb</div>
+<div class="foot">BARILOCHE 13—20 ENE · CRUCERO 18—25 FEB · 2027 · 8 VIAJEROS · PROPUESTA<br>fotos de actividades y barco: Wikimedia Commons (CC) · fotos de las casas: Airbnb</div>
 
 <script>
 /* ---------- DATA ---------- */
+const HERO_BARI = 'https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/963bd3ed-5c2c-4c61-b316-074c61373117.jpeg?im_w=1600';
+const HERO_CRU  = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MSC_Seaview.jpg/960px-MSC_Seaview.jpg';
+const DESC_BARI = 'Todo incluido por persona: hospedaje, vuelos, autos, nafta y el rafting del Río Manso. Cambiá la opción arriba para ver cómo se mueve el total.';
 const OPT = {
-  1:{ title:"Opción 1 · Cabaña con costa de lago",
+  1:{ mode:'bari', title:"Opción 1 · Cabaña con costa de lago",
       pp:656, perday:82, host:288, hostGrp:"USD 2.300 el grupo", grp:"USD 5.245",
       accent:"var(--turquesa)", accentDk:"var(--lago)", soft:"rgba(62,156,154,.12)", glide:0,
-      cierre:"Opción 1 · USD 656 por cabeza",
+      cierre:"Opción 1 · USD 656 por cabeza", fechas:"13 — 20 ene",
+      heroImg:HERO_BARI, desc:DESC_BARI,
       heroH1:'Siete noches<br>al pie del <em>lago</em>' },
-  2:{ title:"Opción 2 · Casa de la Montaña",
+  2:{ mode:'bari', title:"Opción 2 · Casa de la Montaña",
       pp:814, perday:102, host:446, hostGrp:"USD 3.565 el grupo", grp:"USD 6.510",
       accent:"var(--bosque-br)", accentDk:"var(--bosque)", soft:"rgba(78,115,85,.15)", glide:1,
-      cierre:"Opción 2 · USD 814 por cabeza",
+      cierre:"Opción 2 · USD 814 por cabeza", fechas:"13 — 20 ene",
+      heroImg:HERO_BARI, desc:DESC_BARI,
       heroH1:'Siete noches<br>perdidos entre<br>los <em>cerros</em>' },
+  3:{ mode:'cru', title:"Opción 3 · Crucero MSC con pack de bebidas",
+      pp:"1.175", perday:147, grp:"USD 9.403",
+      accent:"#2E6FB7", accentDk:"#14406E", soft:"rgba(46,111,183,.13)", glide:2,
+      cierre:"Opción 3 · USD 1.175 por cabeza", fechas:"18 — 25 feb",
+      heroImg:HERO_CRU,
+      desc:'Todo incluido por persona a bordo del MSC Seaview: cabina, comidas, entretenimiento y pack de bebidas. Ida y vuelta desde Buenos Aires con escalas en Santos, Camboriú y Punta del Este.',
+      packV:'Sí', packS:'incluido en el precio',
+      heroH1:'Siete noches<br>navegando el <em>Atlántico</em>' },
+  4:{ mode:'cru', title:"Opción 4 · Crucero MSC sin pack de bebidas",
+      pp:"1.015", perday:127, grp:"USD 8.120",
+      accent:"#2E6FB7", accentDk:"#14406E", soft:"rgba(46,111,183,.13)", glide:3,
+      cierre:"Opción 4 · USD 1.015 por cabeza", fechas:"18 — 25 feb",
+      heroImg:HERO_CRU,
+      desc:'Todo incluido por persona a bordo del MSC Seaview: cabina, comidas y entretenimiento (lo que tomes se paga a bordo). Ida y vuelta desde Buenos Aires con escalas en Santos, Camboriú y Punta del Este.',
+      packV:'No', packS:'las bebidas se pagan a bordo',
+      heroH1:'Siete noches<br>navegando el <em>Atlántico</em>' },
 };
 
 /* ---------- FOTOS DE LAS CASAS ---------- */
@@ -498,6 +583,11 @@ const CASAS = {
     {c:'Baño 2',      u:P2+'487e3060-97b4-4289-9cf4-93b2636f1cce.jpeg'},
     {c:'Balcón',      u:P2+'acc885bb-130c-4450-b154-225dddebad8e.jpeg'},
     {c:'Balcón',      u:P2+'cebf9bd8-98b2-4273-89b1-bd6e043ea854.jpeg'}
+  ],
+  cru:[
+    {c:'MSC Seaview', u:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MSC_Seaview.jpg/960px-MSC_Seaview.jpg'},
+    {c:'Navegando',   u:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/MSC_Seaview_Ajaccio-b.jpg/960px-MSC_Seaview_Ajaccio-b.jpg'},
+    {c:'En puerto',   u:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Barcelona_MSC_Seaview_01.jpg/960px-Barcelona_MSC_Seaview_01.jpg'}
   ]
 };
 
@@ -520,7 +610,7 @@ function slide(btn,dir){
 }
 
 /* ---------- ACTIVIDADES ---------- */
-const ACTS = [
+const ACTS_BARI = [
  {id:'rafting',   ic:'🚣', tag:'Incluido',   h:'Rafting Río Manso',           p:'Bajada clase III en aguas glaciares con guías.'},
  {id:'cuatri',    ic:'🏍️', tag:'Adrenalina', h:'Cuatriciclos',                p:'Travesía en cuatri por bosque y pampa de altura, cerca de Catedral.'},
  {id:'mtb',       ic:'🚵', tag:'Adrenalina', h:'Mountain bike',               p:'Alquiler de bicis y el Circuito Chico a pedal, con paradas cerveceras.'},
@@ -550,7 +640,7 @@ const ACTS = [
  {id:'relax',     ic:'💆', tag:'Relax',      h:'Pileta y spa en casa',        p:'Recargar: pileta climatizada (Op. 2) o costa del lago (Op. 1).'}
 ];
 
-const DAYS = [
+const DAYS_BARI = [
  {n:"01",date:"Mar 13 ene",sug:"llegada y check-in"},
  {n:"02",date:"Mié 14 ene",sug:"sugerido: Circuito Chico"},
  {n:"03",date:"Jue 15 ene",sug:"sugerido: Catedral / Frey"},
@@ -560,6 +650,51 @@ const DAYS = [
  {n:"07",date:"Lun 19 ene",sug:"sugerido: Tronador / 7 Lagos"},
  {n:"08",date:"Mar 20 ene",sug:"despedida y vuelo"}
 ];
+
+const ACTS_CRU = [
+ {id:'s_cafe',     ic:'☕', tag:'Santos',        h:'Museo del Café',            p:'La Bolsa Oficial de Café y un cafezinho en el centro histórico.'},
+ {id:'s_pele',     ic:'⚽', tag:'Santos',        h:'Museo Pelé',                p:'La vida del Rey en un casarón del centro viejo de Santos.'},
+ {id:'s_monte',    ic:'🚞', tag:'Santos',        h:'Monte Serrat',              p:'Funicular al mirador con toda la bahía de Santos abajo.'},
+ {id:'s_acuario',  ic:'🐠', tag:'Santos',        h:'Acuario de Santos',         p:'El acuario clásico de Ponta da Praia, con pingüinos.'},
+ {id:'s_orla',     ic:'🌴', tag:'Santos',        h:'Jardines de la orla',       p:'El jardín de playa más largo del mundo, ideal en bici.'},
+ {id:'s_bonde',    ic:'🚋', tag:'Santos',        h:'Tranvía histórico',         p:'El bonde turístico entre los palacios del ciclo del café.'},
+ {id:'s_vila',     ic:'🏟️', tag:'Santos',        h:'Vila Belmiro',              p:'El estadio del Santos de Pelé, con tour y museo.'},
+ {id:'c_unipraias',ic:'🚠', tag:'Camboriú',      h:'Teleférico Unipraias',      p:'Bondinho sobre el mar entre Barra Sul y Laranjeiras.'},
+ {id:'c_laranjeiras',ic:'🏖️',tag:'Camboriú',     h:'Playa Laranjeiras',         p:'La bahía escondida a la que llegás en teleférico o barco.'},
+ {id:'c_yoho',     ic:'🛷', tag:'Camboriú',      h:'Trineo y tirolesa',         p:'YooHooo: trineo de montaña y tirolesa en el Parque Unipraias.'},
+ {id:'c_roda',     ic:'🎡', tag:'Camboriú',      h:'FG Big Wheel',              p:'La rueda gigante sobre la Avenida Atlântica.'},
+ {id:'c_cristo',   ic:'✨', tag:'Camboriú',      h:'Cristo Luz',                p:'El Cristo iluminado con vista a toda la ciudad.'},
+ {id:'c_pirata',   ic:'🏴‍☠️', tag:'Camboriú',      h:'Barco pirata',              p:'Paseo temático por la bahía hasta la playa Laranjeiras.'},
+ {id:'c_betocarrero',ic:'🎢',tag:'Camboriú',     h:'Beto Carrero World',        p:'El parque de diversiones más grande de Latam, a 40 min.'},
+ {id:'p_mano',     ic:'✋', tag:'Punta del Este', h:'La Mano de Punta',          p:'Los dedos de Playa Brava, la foto obligada.'},
+ {id:'p_casapueblo',ic:'🏛️',tag:'Punta del Este', h:'Casapueblo',                p:'La casa-museo blanca de Páez Vilaró en Punta Ballena.'},
+ {id:'p_lobos',    ic:'🦭', tag:'Punta del Este', h:'Lobos marinos',             p:'Los lobos del puerto esperando pescado entre los barcos.'},
+ {id:'p_gorriti',  ic:'⛵', tag:'Punta del Este', h:'Isla Gorriti',              p:'Lancha desde el puerto a las playas y el bosque de la isla.'},
+ {id:'p_faro',     ic:'🗼', tag:'Punta del Este', h:'Faro y rambla',             p:'El faro histórico y la vuelta a la península caminando.'},
+ {id:'p_atchugarry',ic:'🗿',tag:'Punta del Este', h:'Fundación Atchugarry',      p:'Esculturas en mármol en un parque abierto, en Manantiales.'},
+ {id:'b_aqua',     ic:'💦', tag:'A bordo',       h:'Aquapark y tirolesa',       p:'Toboganes y la tirolesa sobre la cubierta del Seaview.'},
+ {id:'b_pool',     ic:'🏊', tag:'A bordo',       h:'Día de piletas',            p:'Sol, jacuzzis y reposeras en las cubiertas mirando el mar.'},
+ {id:'b_show',     ic:'🎭', tag:'A bordo',       h:'Shows nocturnos',           p:'Espectáculo distinto en el teatro cada noche de navegación.'},
+ {id:'b_casino',   ic:'🎰', tag:'A bordo',       h:'Casino y bares',            p:'Ruleta, cartas y la noche larga del barco.'},
+ {id:'b_spa',      ic:'💆', tag:'A bordo',       h:'Spa y gimnasio',            p:'Masajes, sauna y entrenar mirando el océano.'}
+];
+
+const DAYS_CRU = [
+ {n:"01",date:"Jue 18 feb",sug:"Buenos Aires · zarpe 20:00"},
+ {n:"02",date:"Vie 19 feb",sug:"navegación"},
+ {n:"03",date:"Sáb 20 feb",sug:"navegación"},
+ {n:"04",date:"Dom 21 feb",sug:"Santos · 08:00–18:00"},
+ {n:"05",date:"Lun 22 feb",sug:"Camboriú · 08:00–17:00"},
+ {n:"06",date:"Mar 23 feb",sug:"navegación"},
+ {n:"07",date:"Mié 24 feb",sug:"Punta del Este · 07:00–16:00"},
+ {n:"08",date:"Jue 25 feb",sug:"Buenos Aires · llegada 08:00"}
+];
+
+const DATA = {
+  bari:{acts:ACTS_BARI, days:DAYS_BARI, store:'bari-week'},
+  cru: {acts:ACTS_CRU,  days:DAYS_CRU,  store:'cru-week'}
+};
+let mode = 'bari';
 
 /* fotos de actividades — Wikimedia Commons (CC), salvo 'relax' que usa el patio de la casa */
 const WC = 'https://upload.wikimedia.org/wikipedia/commons/';
@@ -590,23 +725,52 @@ const IMGS = {
  curanto:    WC+'thumb/6/6a/Destape_de_curanto.JPG/960px-Destape_de_curanto.JPG',
  asado:      WC+'thumb/c/c7/Asado_argentino_a_la_parrilla_con_chorizos_y_achuras.jpg/960px-Asado_argentino_a_la_parrilla_con_chorizos_y_achuras.jpg',
  playabonita:WC+'thumb/b/b5/Playa_Bonita%2C_Lago_Nahuel_Huapi%2C_Bariloche.JPG/960px-Playa_Bonita%2C_Lago_Nahuel_Huapi%2C_Bariloche.JPG',
- relax:      'https://a0.muscache.com/im/pictures/cb8e8058-bd65-43a3-a4d5-44cc8fdbe2f5.jpg?im_w=720'
+ relax:      'https://a0.muscache.com/im/pictures/cb8e8058-bd65-43a3-a4d5-44cc8fdbe2f5.jpg?im_w=720',
+ s_cafe:     WC+'thumb/8/83/Bolsa_do_Caf%C3%A9%2C_Santos_2017_008.jpg/960px-Bolsa_do_Caf%C3%A9%2C_Santos_2017_008.jpg',
+ s_pele:     WC+'thumb/7/7c/Alckmin_prestigia_inaugura%C3%A7%C3%A3o_do_Museu_Pel%C3%A9_em_Santos._%2814251151820%29.jpg/960px-Alckmin_prestigia_inaugura%C3%A7%C3%A3o_do_Museu_Pel%C3%A9_em_Santos._%2814251151820%29.jpg',
+ s_monte:    WC+'thumb/d/d0/Monte_Serrat%2C_Santos_2018_085.jpg/960px-Monte_Serrat%2C_Santos_2018_085.jpg',
+ s_acuario:  WC+'thumb/f/fa/Frente_do_Aqu%C3%A1rio_e_entrada.JPG/960px-Frente_do_Aqu%C3%A1rio_e_entrada.JPG',
+ s_orla:     WC+'thumb/4/4a/Santos%2C_SP_-_Praia_do_Gonzaga_banner.jpg/960px-Santos%2C_SP_-_Praia_do_Gonzaga_banner.jpg',
+ s_bonde:    WC+'thumb/0/02/At_Santos%2C_Brazil_2018_182.jpg/960px-At_Santos%2C_Brazil_2018_182.jpg',
+ s_vila:     WC+'thumb/d/d1/Est%C3%A1dio_Urbano_Caldeira_%28Vila_Belmiro%29_-_vista_interna.jpg/960px-Est%C3%A1dio_Urbano_Caldeira_%28Vila_Belmiro%29_-_vista_interna.jpg',
+ c_unipraias:WC+'thumb/5/5e/Telef%C3%A9rico_do_Parque_Unipraias_sobre_o_Rio_Cambori%C3%BA%2C_Balne%C3%A1rio_Cambori%C3%BA_SC.JPG/960px-Telef%C3%A9rico_do_Parque_Unipraias_sobre_o_Rio_Cambori%C3%BA%2C_Balne%C3%A1rio_Cambori%C3%BA_SC.JPG',
+ c_laranjeiras:WC+'thumb/7/75/Praia_de_Laranjeiras%2Cem_Balne%C3%A1rio_Cambori%C3%BA_sc_-_panoramio.jpg/960px-Praia_de_Laranjeiras%2Cem_Balne%C3%A1rio_Cambori%C3%BA_sc_-_panoramio.jpg',
+ c_yoho:     WC+'thumb/5/59/Balne%C3%A1rio_Cambori%C3%BA_from_Unipraias_Park_2023-04-02.jpg/960px-Balne%C3%A1rio_Cambori%C3%BA_from_Unipraias_Park_2023-04-02.jpg',
+ c_roda:     WC+'thumb/1/13/Balne%C3%A1rio_Cambori%C3%BA_SC_Roda_Gigante.jpg/960px-Balne%C3%A1rio_Cambori%C3%BA_SC_Roda_Gigante.jpg',
+ c_cristo:   WC+'thumb/b/b4/Vista_do_Cristo_Luz%2C_Balne%C3%A1rio_Cambori%C3%BA_SC.JPG/960px-Vista_do_Cristo_Luz%2C_Balne%C3%A1rio_Cambori%C3%BA_SC.JPG',
+ c_pirata:   WC+'thumb/c/c5/Embarque_no_Barco_Pirata_no_Rio_Cambori%C3%BA_com_a_Passarela_da_Barra_Sul_ao_fundo%2C_Balne%C3%A1rio_Cambori%C3%BA_SC.JPG/960px-Embarque_no_Barco_Pirata_no_Rio_Cambori%C3%BA_com_a_Passarela_da_Barra_Sul_ao_fundo%2C_Balne%C3%A1rio_Cambori%C3%BA_SC.JPG',
+ c_betocarrero:WC+'thumb/8/84/Entrada-Beto-Carrero-World.jpg/960px-Entrada-Beto-Carrero-World.jpg',
+ p_mano:     WC+'thumb/9/96/La_mano_de_Punta_del_Este.JPG/960px-La_mano_de_Punta_del_Este.JPG',
+ p_casapueblo:WC+'thumb/4/49/Casapueblo_%28Punta_Ballena%29.jpg/960px-Casapueblo_%28Punta_Ballena%29.jpg',
+ p_lobos:    WC+'thumb/2/29/IslaDeLobos1.jpg/960px-IslaDeLobos1.jpg',
+ p_gorriti:  WC+'thumb/1/12/IslaGorriti-bosque.jpg/960px-IslaGorriti-bosque.jpg',
+ p_faro:     WC+'thumb/a/a8/FaroPuntadelEste.jpg/960px-FaroPuntadelEste.jpg',
+ p_atchugarry:WC+'thumb/e/ec/Peter_Schwickerat%2C_Plastik_Stahl_IX_96%2C_Stahlbramme_25cm_dick%2C_2%2C4x2x2%2C4m%2C_Fundacion_Pablo_Atchugarry%2C_Punta_del_Este%2C_Uruguay.jpg/960px-Peter_Schwickerat%2C_Plastik_Stahl_IX_96%2C_Stahlbramme_25cm_dick%2C_2%2C4x2x2%2C4m%2C_Fundacion_Pablo_Atchugarry%2C_Punta_del_Este%2C_Uruguay.jpg',
+ b_aqua:     WC+'thumb/8/8a/Norwegian_Epic_water_chute_2.JPG/960px-Norwegian_Epic_water_chute_2.JPG',
+ b_pool:     WC+'thumb/f/ff/Pool_Area_Mariner_of_the_Seas_2024.jpg/960px-Pool_Area_Mariner_of_the_Seas_2024.jpg',
+ b_show:     WC+'thumb/b/b2/Musicians_performing_on_stage_at_a_night_concert_featuring_vibrant_lights_and_energetic_atmosphere.jpg/960px-Musicians_performing_on_stage_at_a_night_concert_featuring_vibrant_lights_and_energetic_atmosphere.jpg',
+ b_casino:   WC+'thumb/d/d8/Cruise_Ship_Casino.jpg/960px-Cruise_Ship_Casino.jpg',
+ b_spa:      WC+'thumb/5/5c/EFTA00000167_-_Luxurious_spa_room_features_a_massage_table_ornate_wooden_shelves_stocked_with_skincare_products_and_an_artful_wall_mural.jpg/960px-EFTA00000167_-_Luxurious_spa_room_features_a_massage_table_ornate_wooden_shelves_stocked_with_skincare_products_and_an_artful_wall_mural.jpg'
 };
 
 /* ---------- RENDER PLANNER ---------- */
-document.getElementById('pool').innerHTML = ACTS.map(a=>
-  `<div class="acard" draggable="true" data-id="${a.id}" ondragstart="dragStart(event,'${a.id}')" ondragend="this.classList.remove('dragging')" onclick="tapCard(this,'${a.id}')">`+
-    `<img class="aimg" src="${IMGS[a.id]}" alt="${a.h}" loading="lazy" draggable="false" onerror="this.style.display='none'">`+
-    `<div class="acard-body">`+
-      `<span class="ic">${a.ic}</span>`+
-      `<div><span class="tag">${a.tag}</span><h4>${a.h}</h4><p>${a.p}</p></div>`+
-    `</div>`+
-  `</div>`).join('');
+function renderPool(){
+  tapId = null;
+  document.getElementById('pool-count').textContent = DATA[mode].acts.length+' actividades · arrastrá las que quieras a un día';
+  document.getElementById('pool').innerHTML = DATA[mode].acts.map(a=>
+    `<div class="acard" draggable="true" data-id="${a.id}" ondragstart="dragStart(event,'${a.id}')" ondragend="this.classList.remove('dragging')" onclick="tapCard(this,'${a.id}')">`+
+      `<img class="aimg" src="${IMGS[a.id]}" alt="${a.h}" loading="lazy" draggable="false" onerror="this.style.display='none'">`+
+      `<div class="acard-body">`+
+        `<span class="ic">${a.ic}</span>`+
+        `<div><span class="tag">${a.tag}</span><h4>${a.h}</h4><p>${a.p}</p></div>`+
+      `</div>`+
+    `</div>`).join('');
+}
 
 function renderBoard(){
-  document.getElementById('board').innerHTML = DAYS.map((d,i)=>{
+  document.getElementById('board').innerHTML = DATA[mode].days.map((d,i)=>{
     const chips = (week[i]||[]).map((id,j)=>{
-      const a = ACTS.find(x=>x.id===id);
+      const a = DATA[mode].acts.find(x=>x.id===id);
       return `<span class="achip">${a.ic} ${a.h}<b onclick="event.stopPropagation();removeAct(${i},${j})" title="Sacar del día">×</b></span>`;
     }).join('');
     return `<div class="daybox" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropAct(event,${i})" onclick="zoneTap(${i})">`+
@@ -635,23 +799,27 @@ function addAct(day,id){
   week[day] = week[day]||[];
   if(week[day].includes(id)) return;
   week[day].push(id);
-  localStorage.setItem('bari-week',JSON.stringify(week));
+  localStorage.setItem(DATA[mode].store,JSON.stringify(week));
   renderBoard();
 }
 function removeAct(day,j){
   week[day].splice(j,1);
   if(!week[day].length) delete week[day];
-  localStorage.setItem('bari-week',JSON.stringify(week));
+  localStorage.setItem(DATA[mode].store,JSON.stringify(week));
   renderBoard();
 }
 
 /* ---------- PLAN ARMADO ---------- */
 let week = {};
-try{ week = JSON.parse(localStorage.getItem('bari-week')||'{}'); }catch(e){}
+function loadWeek(){
+  week = {};
+  try{ week = JSON.parse(localStorage.getItem(DATA[mode].store)||'{}'); }catch(e){}
+}
+loadWeek();
 
 function renderPlan(){
-  document.getElementById('plan-list').innerHTML = DAYS.map((d,i)=>{
-    const acts = (week[i]||[]).map(id=>ACTS.find(a=>a.id===id));
+  document.getElementById('plan-list').innerHTML = DATA[mode].days.map((d,i)=>{
+    const acts = (week[i]||[]).map(id=>DATA[mode].acts.find(a=>a.id===id));
     return `<div class="plan-row"><span class="d">DÍA ${d.n}</span>`+
       (acts.length ? `<span class="t">${acts.map(a=>a.ic+' '+a.h).join(' · ')}</span>`
                    : `<span class="empty">día libre por ahora — arrastrá actividades arriba</span>`)+
@@ -662,9 +830,9 @@ function renderPlan(){
 
 function planText(){
   const o = OPT[current];
-  let t = `🏔️ Bariloche · 13–20 ene 2027 · 8 personas\n${o.title}\n💵 USD ${o.pp} por persona, todo incluido · ${o.grp} el grupo\n\n📅 El plan:\n`;
-  DAYS.forEach((d,i)=>{
-    const acts = (week[i]||[]).map(id=>ACTS.find(a=>a.id===id).h);
+  let t = `${o.mode==='cru'?'🚢 Crucero MSC Seaview':'🏔️ Bariloche'} · ${o.fechas} 2027 · 8 personas\n${o.title}\n💵 USD ${o.pp} por persona, todo incluido · ${o.grp} el grupo\n\n📅 El plan:\n`;
+  DATA[mode].days.forEach((d,i)=>{
+    const acts = (week[i]||[]).map(id=>DATA[mode].acts.find(a=>a.id===id).h);
     t += `Día ${+d.n} (${d.date}): ${acts.length ? acts.join(' + ') : 'a definir'}\n`;
   });
   return t;
@@ -711,26 +879,55 @@ function setOption(n){
   g.style.width=active.offsetWidth+'px';
   g.style.transform=`translateX(${active.offsetLeft-4}px)`;
 
+  // hero
+  const hi = document.getElementById('hero-img');
+  hi.style.display=''; hi.src=o.heroImg;
+  document.getElementById('hero-h1').innerHTML=o.heroH1;
+  document.getElementById('hero-fechas').textContent=o.fechas;
+  document.getElementById('hero-price').textContent='USD '+o.pp;
+  document.getElementById('hero-section').classList.toggle('opt2', n===2);
+
   // numbers
   document.getElementById('res-title').textContent=o.title;
+  document.getElementById('res-desc').textContent=o.desc;
   document.getElementById('pp-total').textContent=o.pp;
   document.getElementById('pp-perday').textContent='USD '+o.perday;
-  document.getElementById('b-host').textContent='USD '+o.host;
-  document.getElementById('b-host-grp').textContent=o.hostGrp;
   document.getElementById('grp-total').textContent=o.grp;
-  document.getElementById('hero-price').textContent='USD '+o.pp;
-  document.getElementById('cierre-title').textContent=o.cierre;
-  document.getElementById('hero-h1').innerHTML=o.heroH1;
-  document.getElementById('hero-section').classList.toggle('opt2', n===2);
   document.getElementById('numeros').classList.toggle('opt2', n===2);
+  document.getElementById('bk-bari').style.display = o.mode==='bari' ? '' : 'none';
+  document.getElementById('bk-cru').style.display  = o.mode==='cru'  ? '' : 'none';
+  if(o.mode==='bari'){
+    document.getElementById('b-host').textContent='USD '+o.host;
+    document.getElementById('b-host-grp').textContent=o.hostGrp;
+  }else{
+    document.getElementById('bkc-pp').textContent='USD '+o.pp;
+    document.getElementById('bkc-grp').textContent=o.grp+' el grupo';
+    document.getElementById('bkc-pack').textContent=o.packV;
+    document.getElementById('bkc-pack-s').textContent=o.packS;
+  }
 
-  // lodge cards
-  document.querySelectorAll('.lodge-card').forEach(c=>c.classList.toggle('active',+c.dataset.card===n));
+  // hospedaje / barco
+  document.getElementById('lodge-title').textContent = o.mode==='cru' ? 'El barco' : 'La casa';
+  document.getElementById('lodge-desc').textContent = o.mode==='cru'
+    ? 'El MSC Seaview es de los barcos grandes de MSC: piletas, aquapark, teatro y veinte cubiertas de vida a bordo. Las opciones 3 y 4 comparten barco y recorrido; cambia solo el pack de bebidas.'
+    : 'Las dos entran cómodas para los ocho. Una abre al lago; la otra se mete en el bosque, con pileta climatizada. Elegí arriba y la propuesta entera se acomoda.';
+  const cardKey = o.mode==='cru' ? 'cru' : String(n);
+  document.querySelectorAll('.lodge-card').forEach(c=>c.classList.toggle('active', c.dataset.card===cardKey));
+
+  // qué entra / no entra
+  document.getElementById('inc-bari').style.display = o.mode==='bari' ? '' : 'none';
+  document.getElementById('inc-cru').style.display  = o.mode==='cru'  ? '' : 'none';
+
+  document.getElementById('cierre-title').textContent=o.cierre;
+
+  // planner por modo
+  if(o.mode!==mode){ mode=o.mode; loadWeek(); renderPool(); renderBoard(); }
 
   updateWa();
 }
-function toggleOption(){ setOption(current===1?2:1); document.getElementById('numeros').scrollIntoView({behavior:'smooth'}); }
+function toggleOption(){ setOption(current===4?1:current+1); document.getElementById('numeros').scrollIntoView({behavior:'smooth'}); }
 
+renderPool();
 renderBoard();
 
 window.addEventListener('load',()=>setOption(1));
