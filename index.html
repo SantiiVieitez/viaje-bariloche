@@ -264,7 +264,7 @@ body.dark .day-tip b{color:var(--madera)}
   <div class="wrap">
     <p class="eyebrow">San Carlos de Bariloche · Patagonia Argentina</p>
     <h1 id="hero-h1">Siete noches<br>al pie del <em>lago</em></h1>
-    <p class="sub">Una semana entre el Nahuel Huapi, los cerros y los bosques. Dos casas para ocho, dos formas de vivir el mismo verano patagónico.</p>
+    <p class="sub" id="hero-sub">Una semana entre el Nahuel Huapi, los cerros y los bosques, con una casa para los ocho.</p>
     <div class="hero-meta">
       <div><span>Fechas</span><strong id="hero-fechas">13 — 20 ene</strong></div>
       <div><span>Noches</span><strong>7</strong></div>
@@ -493,7 +493,7 @@ body.dark .day-tip b{color:var(--madera)}
   <div class="wrap">
     <p class="eyebrow">A un sí de distancia</p>
     <h2 id="cierre-title">Opción 1 · USD 656 por cabeza</h2>
-    <p>Misma patota, cuatro maneras de pasarla bien: el lago, el bosque o el barco — con o sin pack de bebidas. Volvé arriba y comparen.</p>
+    <p>Cuatro propuestas, un solo viaje: el lago, el bosque o el barco — con o sin pack de bebidas. Comparen y elijan una.</p>
     <div class="cta-row">
       <button class="cta" onclick="toggleOption()">Comparar la siguiente opción →</button>
       <a class="cta wa wa-share" href="#" target="_blank" rel="noopener">Mandar por WhatsApp</a>
@@ -508,6 +508,8 @@ body.dark .day-tip b{color:var(--madera)}
 const HERO_BARI = 'https://a0.muscache.com/im/pictures/hosting/Hosting-22601323/original/963bd3ed-5c2c-4c61-b316-074c61373117.jpeg?im_w=1600';
 const HERO_CRU  = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MSC_Seaview.jpg/960px-MSC_Seaview.jpg';
 const DESC_BARI = 'Todo incluido por persona: hospedaje, vuelos, autos, nafta y el rafting del Río Manso. Cambiá la opción arriba para ver cómo se mueve el total.';
+const SUB_BARI = 'Una semana entre el Nahuel Huapi, los cerros y los bosques, con una casa para los ocho.';
+const SUB_CRU  = 'Una semana por el Atlántico a bordo del MSC Seaview: Santos, Camboriú y Punta del Este, con el barco como casa.';
 const OPT = {
   1:{ mode:'bari', title:"Opción 1 · Cabaña con costa de lago",
       pp:656, perday:82, host:288, hostGrp:"USD 2.300 el grupo", grp:"USD 5.245",
@@ -883,6 +885,7 @@ function setOption(n){
   const hi = document.getElementById('hero-img');
   hi.style.display=''; hi.src=o.heroImg;
   document.getElementById('hero-h1').innerHTML=o.heroH1;
+  document.getElementById('hero-sub').textContent = o.mode==='cru' ? SUB_CRU : SUB_BARI;
   document.getElementById('hero-fechas').textContent=o.fechas;
   document.getElementById('hero-price').textContent='USD '+o.pp;
   document.getElementById('hero-section').classList.toggle('opt2', n===2);
