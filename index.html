@@ -471,7 +471,7 @@ body.dark .day-tip b{color:var(--madera)}
       <div class="cell"><div class="ic">🛏️</div><h4>Cabinas</h4><p>7 noches a bordo para los 8, en cabinas dobles. Zarpe 18/2, regreso 25/2.</p></div>
       <div class="cell"><div class="ic">🍽️</div><h4>Comidas</h4><p>Buffet y restaurantes principales del barco, todos los días.</p></div>
       <div class="cell"><div class="ic">🎭</div><h4>Entretenimiento</h4><p>Teatro, piletas, aquapark y toda la vida del barco.</p></div>
-      <div class="cell"><div class="ic">🍹</div><h4>Pack de bebidas</h4><p>Solo en la Opción 3: tragos, gaseosas y café sin pasar la tarjeta.</p></div>
+      <div class="cell" id="inc-pack"><div class="ic">🍹</div><h4>Pack de bebidas</h4><p>Tragos, gaseosas y café sin pasar la tarjeta en todo el viaje.</p></div>
     </div>
 
     <div class="sec-head" style="margin-top:72px;margin-bottom:36px">
@@ -481,7 +481,8 @@ body.dark .day-tip b{color:var(--madera)}
     <div class="grid">
       <div class="cell"><div class="ic">🚖</div><h4>Traslados</h4><p>Hasta el puerto de Buenos Aires y la vuelta a casa.</p></div>
       <div class="cell"><div class="ic">🛥️</div><h4>Excursiones en puerto</h4><p>Lo que hagamos en Santos, Camboriú y Punta del Este va aparte.</p></div>
-      <div class="cell"><div class="ic">📶</div><h4>Wifi y extras</h4><p>Internet, casino y compras a bordo. En la Opción 4, también todo lo que tomes.</p></div>
+      <div class="cell" id="noinc-bebidas" style="display:none"><div class="ic">🍹</div><h4>Bebidas</h4><p>Todo lo que tomes a bordo se paga con la tarjeta del barco.</p></div>
+      <div class="cell"><div class="ic">📶</div><h4>Wifi y extras</h4><p>Internet, casino y compras a bordo.</p></div>
     </div>
     </div>
   </div>
@@ -919,6 +920,8 @@ function setOption(n){
   // qué entra / no entra
   document.getElementById('inc-bari').style.display = o.mode==='bari' ? '' : 'none';
   document.getElementById('inc-cru').style.display  = o.mode==='cru'  ? '' : 'none';
+  document.getElementById('inc-pack').style.display = n===3 ? '' : 'none';
+  document.getElementById('noinc-bebidas').style.display = n===4 ? '' : 'none';
 
   document.getElementById('cierre-title').textContent=o.cierre;
 
